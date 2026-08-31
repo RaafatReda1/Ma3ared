@@ -7,9 +7,11 @@ import { PocketWatch } from "./PocketWatch";
 
 const PocketWatchReactComponent = () => {
   return (
-    <div style={{ width: "100%", height: "100%", position: "relative" }}>
+    <div 
+    className="w-[500px] h-[500px] object-cover absolute right-0 top-0 "
+    >
       <Canvas
-        shadows
+       
         dpr={[1, 2]}
         gl={{
           antialias: true,
@@ -20,10 +22,10 @@ const PocketWatchReactComponent = () => {
       >
         <Suspense fallback={null}>
           <Stage
-            environment="city"
+            environment="night"
             intensity={1.0}
             adjustCamera={1.2}
-            shadows={{ type: "contact", opacity: 0.5, blur: 2 }}
+            shadows={{ type: "contact", opacity: 0, blur: 0 }}
           >
             <Center>
               <PocketWatch />

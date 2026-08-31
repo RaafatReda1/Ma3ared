@@ -57,8 +57,8 @@ export function PocketWatch({
 
     scene.traverse((child) => {
       if (child.isMesh) {
-        child.castShadow = true
-        child.receiveShadow = true
+        child.castShadow = false
+        child.receiveShadow = false
 
         const isHand =
           child.name === 'Line001' ||
