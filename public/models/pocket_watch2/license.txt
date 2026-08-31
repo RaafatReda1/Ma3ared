@@ -1,0 +1,11 @@
+Model Information:
+* title:	Pocket Watch
+* source:	https://sketchfab.com/3d-models/pocket-watch-64f285846fa344a5b0deadc02a5f00e0
+* author:	K- (https://sketchfab.com/K-)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Pocket Watch" (https://sketchfab.com/3d-models/pocket-watch-64f285846fa344a5b0deadc02a5f00e0) by K- (https://sketchfab.com/K-) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
