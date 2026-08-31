@@ -11,8 +11,8 @@ export const Navbar = () => {
 
     gsap.fromTo(
       el,
-      { y: -30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1.0, delay: 0.1, ease: 'power2.out' }
+      { y: -25, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.1, delay: 0.1, ease: 'power3.out' }
     );
   }, []);
 

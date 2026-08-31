@@ -1,13 +1,15 @@
 .floatingWrapper {
   position: absolute;
-  will-change: transform;
+  will-change: transform, opacity;
   cursor: pointer;
   pointer-events: auto;
+  opacity: 0; /* Prevents initial flicker/pop-in */
 }
 
 .floatingInner {
   width: 100%;
   height: 100%;
+  will-change: transform;
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -24,15 +26,15 @@
 
 /* Three distinctive GPU floating rhythms */
 .floatAnim1 {
-  animation: floatSlow 4.2s ease-in-out infinite alternate;
+  animation: floatSlow 4.5s ease-in-out infinite alternate;
 }
 
 .floatAnim2 {
-  animation: floatMedium 3.6s ease-in-out infinite alternate;
+  animation: floatMedium 3.8s ease-in-out infinite alternate;
 }
 
 .floatAnim3 {
-  animation: floatFast 4.8s ease-in-out infinite alternate;
+  animation: floatFast 5s ease-in-out infinite alternate;
 }
 
 @keyframes floatSlow {
@@ -40,7 +42,7 @@
     transform: translateY(0px) rotate(0deg);
   }
   100% {
-    transform: translateY(-16px) rotate(4deg);
+    transform: translateY(-14px) rotate(3.5deg);
   }
 }
 
@@ -49,7 +51,7 @@
     transform: translateY(0px) rotate(0deg);
   }
   100% {
-    transform: translateY(-20px) rotate(-5deg);
+    transform: translateY(-18px) rotate(-4deg);
   }
 }
 
@@ -58,6 +60,6 @@
     transform: translateY(0px) rotate(0deg);
   }
   100% {
-    transform: translateY(-14px) rotate(3deg);
+    transform: translateY(-12px) rotate(2.5deg);
   }
 }

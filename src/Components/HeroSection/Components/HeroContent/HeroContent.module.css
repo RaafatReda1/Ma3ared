@@ -13,6 +13,17 @@
   user-select: none;
 }
 
+/* Initial opacity 0 prevents pop-in */
+.eventBadge,
+.logoWrapper,
+.mainSlogan,
+.subDescription,
+.infoPill,
+.actionButtonsGroup {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
 /* Event Badge */
 .eventBadge {
   display: inline-flex;

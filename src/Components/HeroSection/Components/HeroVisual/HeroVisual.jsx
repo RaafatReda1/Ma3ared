@@ -5,30 +5,48 @@ import styles from './HeroVisual.module.css';
 
 export const HeroVisual = () => {
   const characterRef = useRef(null);
+  const ringRef = useRef(null);
 
   useEffect(() => {
-    const el = characterRef.current;
-    if (!el) return;
+    const char = characterRef.current;
+    const ring = ringRef.current;
 
-    // Smooth GSAP entrance from right
-    gsap.fromTo(
-      el,
-      { x: 90, opacity: 0, scale: 0.95 },
-      {
-        x: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 1.4,
-        delay: 0.2,
-        ease: 'power3.out',
+    const ctx = gsap.context(() => {
+      // Backdrop ring fade in
+      if (ring) {
+        gsap.to(ring, {
+          opacity: 1,
+          duration: 1.5,
+          delay: 0.1,
+          ease: 'power2.out',
+        });
       }
-    );
+
+      // Smooth character entrance
+      if (char) {
+        gsap.fromTo(
+          char,
+          { x: 80, y: 20, opacity: 0, scale: 0.96 },
+          {
+            x: 0,
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1.5,
+            delay: 0.2,
+            ease: 'power3.out',
+          }
+        );
+      }
+    });
+
+    return () => ctx.revert();
   }, []);
 
   return (
     <div className={styles.visualSection}>
       {/* Decorative Golden Ring */}
-      <div className={styles.magicRingBackdrop} />
+      <div ref={ringRef} className={styles.magicRingBackdrop} />
 
       {/* Ma3ared Man Character */}
       <div className={styles.characterContainer}>
@@ -41,47 +59,47 @@ export const HeroVisual = () => {
         </div>
       </div>
 
-      {/* 1. Sand Watch / Hourglass - Flying in from mid-left */}
+      {/* 1. Sand Watch / Hourglass */}
       <FloatingObject
         src="/sandWatch.png"
         alt="ساعة رملية ذهبية"
         className={styles.sandWatch}
-        fromVars={{ x: -100, y: -30, rotation: -25, opacity: 0, scale: 0.5 }}
-        toVars={{ x: 0, y: 0, rotation: -8, opacity: 1, scale: 1 }}
-        delay={0.4}
+        fromVars={{ x: -80, y: -20, opacity: 0, scale: 0.7 }}
+        toVars={{ x: 0, y: 0, opacity: 1, scale: 1 }}
+        delay={0.35}
         animType="floatAnim1"
       />
 
-      {/* 2. Antique Key - Flying in from top-right */}
+      {/* 2. Antique Key */}
       <FloatingObject
         src="/key.png"
         alt="مفتاح الزمن الذهبي"
         className={styles.keyObject}
-        fromVars={{ x: 100, y: -80, rotation: 50, opacity: 0, scale: 0.4 }}
-        toVars={{ x: 0, y: 0, rotation: 28, opacity: 1, scale: 1 }}
-        delay={0.55}
+        fromVars={{ x: 80, y: -60, opacity: 0, scale: 0.6 }}
+        toVars={{ x: 0, y: 0, opacity: 1, scale: 1 }}
+        delay={0.5}
         animType="floatAnim2"
       />
 
-      {/* 3. Open Magic Book - Flying in from bottom-right */}
+      {/* 3. Open Magic Book */}
       <FloatingObject
         src="/book2.png"
         alt="كتاب المعرفة المفتوح"
         className={styles.openBook}
-        fromVars={{ x: 110, y: 90, rotation: 20, opacity: 0, scale: 0.5 }}
-        toVars={{ x: 0, y: 0, rotation: -6, opacity: 1, scale: 1 }}
-        delay={0.7}
+        fromVars={{ x: 90, y: 70, opacity: 0, scale: 0.7 }}
+        toVars={{ x: 0, y: 0, opacity: 1, scale: 1 }}
+        delay={0.65}
         animType="floatAnim3"
       />
 
-      {/* 4. Vintage Closed Book - Flying in from top-left */}
+      {/* 4. Vintage Closed Book */}
       <FloatingObject
         src="/book.png"
         alt="كتاب الأسرار"
         className={styles.closedBook}
-        fromVars={{ x: -60, y: -90, rotation: -30, opacity: 0, scale: 0.4 }}
-        toVars={{ x: 0, y: 0, rotation: 12, opacity: 1, scale: 1 }}
-        delay={0.8}
+        fromVars={{ x: -50, y: -70, opacity: 0, scale: 0.6 }}
+        toVars={{ x: 0, y: 0, opacity: 1, scale: 1 }}
+        delay={0.75}
         animType="floatAnim1"
       />
     </div>

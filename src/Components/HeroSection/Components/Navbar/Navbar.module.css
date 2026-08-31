@@ -9,6 +9,8 @@
   align-items: center;
   direction: rtl;
   z-index: 50;
+  opacity: 0;
+  will-change: transform, opacity;
 }
 
 .brandBadge {

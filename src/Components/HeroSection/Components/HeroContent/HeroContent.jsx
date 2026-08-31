@@ -14,43 +14,43 @@ export const HeroContent = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
-        defaults: { ease: 'power3.out', duration: 1.0 },
+        defaults: { ease: 'power3.out', duration: 1.1 },
       });
 
       tl.fromTo(
         badgeRef.current,
-        { y: -20, opacity: 0 },
-        { y: 0, opacity: 1, delay: 0.1 }
+        { y: -18, opacity: 0 },
+        { y: 0, opacity: 1, delay: 0.15 }
       )
         .fromTo(
           logoRef.current,
-          { x: -60, opacity: 0, scale: 0.9 },
-          { x: 0, opacity: 1, scale: 1, duration: 1.1, ease: 'back.out(1.2)' },
-          '-=0.6'
+          { x: -50, opacity: 0, scale: 0.94 },
+          { x: 0, opacity: 1, scale: 1, duration: 1.2, ease: 'power3.out' },
+          '-=0.7'
         )
         .fromTo(
           titleRef.current,
-          { x: -40, opacity: 0 },
+          { x: -35, opacity: 0 },
+          { x: 0, opacity: 1 },
+          '-=0.8'
+        )
+        .fromTo(
+          descRef.current,
+          { x: -25, opacity: 0 },
           { x: 0, opacity: 1 },
           '-=0.7'
         )
         .fromTo(
-          descRef.current,
-          { x: -30, opacity: 0 },
-          { x: 0, opacity: 1 },
+          detailsRef.current ? detailsRef.current.children : [],
+          { y: 15, opacity: 0 },
+          { y: 0, opacity: 1, stagger: 0.08, duration: 0.8 },
           '-=0.6'
         )
         .fromTo(
-          detailsRef.current,
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1 },
-          '-=0.5'
-        )
-        .fromTo(
           ctaRef.current,
-          { y: 25, opacity: 0, scale: 0.95 },
-          { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.4)' },
-          '-=0.4'
+          { y: 20, opacity: 0, scale: 0.96 },
+          { y: 0, opacity: 1, scale: 1, duration: 0.9, ease: 'power3.out' },
+          '-=0.5'
         );
     }, containerRef);
 
