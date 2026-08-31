@@ -1,9 +1,29 @@
-import React from 'react'
+import React from 'react';
+import Navbar from './Components/Navbar/Navbar';
+import BackgroundFX from './Components/BackgroundFX/BackgroundFX';
+import HeroContent from './Components/HeroContent/HeroContent';
+import HeroVisual from './Components/HeroVisual/HeroVisual';
+import styles from './HeroSection.module.css';
 
-const HeroSection = () => {
+export const HeroSection = () => {
   return (
-    <div>HeroSection</div>
-  )
-}
+    <section className={styles.heroWrapper}>
+      {/* Background */}
+      <BackgroundFX />
 
-export default HeroSection
+      {/* Top Navbar */}
+      <Navbar />
+
+      {/* Main Container */}
+      <div className={styles.heroContentContainer}>
+        {/* Left Side: TikTak Logo, Slogan & Event Details */}
+        <HeroContent />
+
+        {/* Right Side: Ma3ared Man + Floating Objects */}
+        <HeroVisual />
+      </div>
+    </section>
+  );
+};
+
+export default HeroSection;

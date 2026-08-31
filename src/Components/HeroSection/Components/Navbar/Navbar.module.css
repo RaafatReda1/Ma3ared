@@ -1,0 +1,76 @@
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 24px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  direction: rtl;
+  z-index: 50;
+}
+
+.brandBadge {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brandBadge span {
+  color: var(--color-gold-light);
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+  background: rgba(3, 14, 38, 0.5);
+  padding: 8px 24px;
+  border-radius: 40px;
+  border: 1px solid rgba(223, 156, 76, 0.25);
+}
+
+.navLinks a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.navLinks a:hover,
+.navLinks a.active {
+  color: var(--color-gold-light);
+}
+
+.vipBtn {
+  padding: 10px 22px;
+  background: rgba(223, 156, 76, 0.15);
+  border: 1px solid var(--color-gold);
+  border-radius: 40px;
+  color: var(--color-gold-light);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.vipBtn:hover {
+  background: var(--color-gold);
+  color: var(--color-midnight);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 16px 24px;
+  }
+  .navLinks {
+    display: none;
+  }
+}
