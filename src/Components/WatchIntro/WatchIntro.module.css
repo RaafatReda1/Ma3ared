@@ -1,0 +1,230 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: var(--color-midnight);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  direction: rtl;
+}
+
+/* Deep radial glow behind the watch */
+.bgGlow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 55% at 50% 48%,
+      rgba(11, 35, 70, 0.85) 0%,
+      rgba(3, 14, 38, 0.6) 55%,
+      transparent 100%),
+    radial-gradient(ellipse 35% 30% at 50% 48%,
+      rgba(223, 156, 76, 0.08) 0%,
+      transparent 70%);
+  pointer-events: none;
+}
+
+/* Subtle grid/star particles in background */
+.bgParticles {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(223, 156, 76, 0.12) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* ── Three.js Canvas wrapper ─────────────────────── */
+.canvasWrap {
+  position: relative;
+  width: min(520px, 80vw);
+  height: min(520px, 80vw);
+  flex-shrink: 0;
+  margin-top: -40px;
+  z-index: 2;
+}
+
+/* Soft golden halo behind model */
+.watchHalo {
+  position: absolute;
+  inset: 50%;
+  transform: translate(-50%, -50%);
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(223, 156, 76, 0.10) 0%,
+    transparent 70%
+  );
+  box-shadow: 0 0 80px 20px rgba(223, 156, 76, 0.06);
+  pointer-events: none;
+}
+
+/* ── Floating objects layer ──────────────────────── */
+.floatingLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floatItem {
+  position: absolute;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.floatItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
+}
+
+/* Individual positions — scattered around viewport */
+.sandWatchFloat {
+  top: 12%;
+  left: 7%;
+  width: 110px;
+  height: 110px;
+}
+
+.keyFloat {
+  top: 8%;
+  right: 8%;
+  width: 95px;
+  height: 95px;
+}
+
+.openBookFloat {
+  bottom: 14%;
+  right: 6%;
+  width: 130px;
+  height: 100px;
+}
+
+.closedBookFloat {
+  bottom: 18%;
+  left: 5%;
+  width: 85px;
+  height: 85px;
+}
+
+/* Float animation for levitation */
+@keyframes introFloat {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  50%  { transform: translateY(-12px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+@keyframes introFloat2 {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  50%  { transform: translateY(-16px) rotate(-3deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+@keyframes introFloat3 {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  50%  { transform: translateY(-10px) rotate(1.5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.floatAnim1 { animation: introFloat 4.5s ease-in-out infinite; }
+.floatAnim2 { animation: introFloat2 3.8s ease-in-out infinite; }
+.floatAnim3 { animation: introFloat3 5.2s ease-in-out infinite; }
+
+/* ── Text block ──────────────────────────────────── */
+.textBlock {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 3;
+  pointer-events: none;
+  width: min(620px, 90vw);
+}
+
+.textLine {
+  opacity: 0;
+  transform: translateY(18px);
+  font-family: var(--font-arabic);
+  color: var(--color-text-muted);
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+  will-change: opacity, transform;
+}
+
+.textLine.goldLine {
+  color: var(--color-gold-light);
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+/* ── Top logo ────────────────────────────────────── */
+.topLogo {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  opacity: 0;
+}
+
+.topLogo img {
+  height: 44px;
+  width: auto;
+  filter: drop-shadow(0 0 12px rgba(223, 156, 76, 0.4));
+}
+
+/* ── Skip button ─────────────────────────────────── */
+.skipBtn {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  opacity: 0;
+  background: transparent;
+  border: 1px solid rgba(223, 156, 76, 0.35);
+  color: rgba(243, 200, 126, 0.7);
+  font-family: var(--font-arabic);
+  font-size: 0.85rem;
+  padding: 8px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  will-change: opacity;
+  backdrop-filter: blur(6px);
+}
+
+.skipBtn:hover {
+  background: rgba(223, 156, 76, 0.12);
+  color: var(--color-gold-light);
+  border-color: rgba(223, 156, 76, 0.6);
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 640px) {
+  .canvasWrap {
+    width: min(340px, 88vw);
+    height: min(340px, 88vw);
+    margin-top: -20px;
+  }
+  .sandWatchFloat { width: 72px; height: 72px; top: 10%; left: 3%; }
+  .keyFloat       { width: 62px; height: 62px; top: 6%; right: 4%; }
+  .openBookFloat  { width: 88px; height: 68px; bottom: 18%; right: 3%; }
+  .closedBookFloat{ width: 58px; height: 58px; bottom: 22%; left: 3%; }
+  .textBlock      { bottom: 10%; }
+  .textLine       { font-size: 0.92rem; }
+  .textLine.goldLine { font-size: 1rem; }
+  .topLogo img    { height: 34px; }
+}

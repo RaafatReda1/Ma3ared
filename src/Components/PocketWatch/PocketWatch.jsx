@@ -1,7 +1,8 @@
 import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useMemo } from 'react'
 import * as THREE from 'three'
+import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils.js'
 import audioTic from '../../../public/freesound_community-tactactac-103657.mp3'
 
 export function PocketWatch({
@@ -11,7 +12,12 @@ export function PocketWatch({
 }) {
   const group = useRef()
 
-  const { scene } = useGLTF('/models/pocket_watch3/s3.glb')
+  const { scene: rawScene } = useGLTF('/models/pocket_watch3/s3.glb')
+  // Clone scene so every canvas/instance has its own isolated scene graph
+  const scene = useMemo(() => {
+    if (!rawScene) return null
+    return SkeletonUtils.clone(rawScene)
+  }, [rawScene])
 
   const minutePivotRef = useRef()
   const hourPivotRef = useRef()
@@ -109,17 +115,16 @@ export function PocketWatch({
 
     const boldHandMaterial = new THREE.MeshStandardMaterial({
       color: new THREE.Color(handColor),
-      metalness: 0.85,
+      metalness: 0.9,
       roughness: 0.15,
       transparent: false,
       opacity: 1,
       depthWrite: true,
-      emissive: new THREE.Color(handColor).multiplyScalar(0.12),
+      emissive: new THREE.Color(handColor).multiplyScalar(0.15),
     })
 
     scene.traverse((child) => {
       if (child.isMesh) {
-
         child.castShadow = false
         child.receiveShadow = false
 
@@ -129,21 +134,22 @@ export function PocketWatch({
           child.material?.name === 'Material__13'
 
         if (isHand) {
-
           child.material = boldHandMaterial
-
         } else if (child.material) {
-
           if (child.material.map) {
-
-            child.material.map.colorSpace =
-              THREE.SRGBColorSpace
-
+            child.material.map.colorSpace = THREE.SRGBColorSpace
             child.material.needsUpdate = true
+          }
+
+          // Premium gold and crystal materials
+          if (child.material.metalness !== undefined) {
+            child.material.metalness = 0.85
+            child.material.roughness = 0.2
           }
 
           child.material.transparent = false
           child.material.opacity = 1
+          child.material.needsUpdate = true
         }
       }
     })
@@ -258,7 +264,18 @@ export function PocketWatch({
 
   useFrame(() => {
 
-    if (!animateHands) return
+    if (!animateHands) {
+      // Freeze both hands at their initial 12-o'clock rest positions
+      if (minutePivotRef.current) {
+        minutePivotRef.current.rotation.z =
+          -minuteStartAngleRef.current + Math.PI / 2
+      }
+      if (hourPivotRef.current) {
+        hourPivotRef.current.rotation.z =
+          -hourStartAngleRef.current + Math.PI / 2
+      }
+      return
+    }
 
     if (
       !minutePivotRef.current ||

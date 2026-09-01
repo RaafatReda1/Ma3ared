@@ -1,15 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import FloatingObject from '../FloatingObject/FloatingObject';
+import WatchScene from '../../../WatchIntro/WatchScene';
 import styles from './HeroVisual.module.css';
 
 export const HeroVisual = () => {
   const characterRef = useRef(null);
   const ringRef = useRef(null);
+  const watchRef = useRef(null);
 
   useEffect(() => {
     const char = characterRef.current;
     const ring = ringRef.current;
+    const watch = watchRef.current;
 
     const ctx = gsap.context(() => {
       // Backdrop ring fade in
@@ -38,6 +41,21 @@ export const HeroVisual = () => {
           }
         );
       }
+
+      // Smooth watch entrance
+      if (watch) {
+        gsap.fromTo(
+          watch,
+          { opacity: 0, scale: 0.8 },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 1.2,
+            delay: 0.3,
+            ease: 'power3.out',
+          }
+        );
+      }
     });
 
     return () => ctx.revert();
@@ -56,6 +74,11 @@ export const HeroVisual = () => {
             alt="معارض مان - بطل الفعالية"
             className={styles.manImage}
           />
+        </div>
+
+        {/* 3D Pocket Watch floating in Ma3ared Man's hand */}
+        <div ref={watchRef} className={styles.heroWatchWrapper}>
+          <WatchScene isHeroMode={true} />
         </div>
       </div>
 

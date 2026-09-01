@@ -52,6 +52,18 @@
   pointer-events: none;
 }
 
+/* 3D Pocket Watch in Ma3ared Man's Hand */
+.heroWatchWrapper {
+  position: absolute;
+  bottom: 30%;
+  right: 14%;
+  width: 260px;
+  height: 260px;
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(0 15px 35px rgba(223, 156, 76, 0.35));
+}
+
 /* Floating Object Positions */
 .sandWatch {
   top: 30%;
@@ -95,15 +107,17 @@
     position: relative;
     overflow: visible;
   }
+
   .manImageWrapper {
     height: 100%;
     max-height: 420px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
   }
+
   .manImage {
     max-height: 420px;
     height: 100%;
@@ -111,6 +125,7 @@
     object-fit: contain;
     filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.7));
   }
+
   .magicRingBackdrop {
     width: clamp(260px, 75vw, 360px);
     height: clamp(260px, 75vw, 360px);
@@ -118,29 +133,40 @@
     transform: translateX(50%);
     bottom: 5%;
   }
+
   .sandWatch {
     width: 85px;
     height: auto;
     top: 18%;
     left: 4%;
   }
+
   .keyObject {
     width: 75px;
     height: auto;
     top: 6%;
     right: 6%;
   }
+
   .openBook {
     width: 100px;
     height: auto;
     bottom: 8%;
     right: 4%;
   }
+
   .closedBook {
     width: 70px;
     height: auto;
     top: 6%;
     left: 8%;
+  }
+
+  .heroWatchWrapper {
+    width: 155px;
+    height: 155px;
+    right: 12%;
+    bottom: 26%;
   }
 }
 
@@ -150,31 +176,45 @@
     max-height: 380px;
     height: 40vh;
   }
+
   .manImageWrapper {
     max-height: 370px;
   }
+
   .manImage {
     max-height: 360px;
   }
+
   .magicRingBackdrop {
     width: 280px;
     height: 280px;
   }
+
+  .heroWatchWrapper {
+    width: 120px;
+    height: 120px;
+    right: 20%;
+    bottom: 35%;
+  }
+
   .sandWatch {
     width: 70px;
     left: 2%;
     top: 20%;
   }
+
   .keyObject {
     width: 62px;
     right: 4%;
     top: 4%;
   }
+
   .openBook {
     width: 82px;
     right: 2%;
     bottom: 6%;
   }
+
   .closedBook {
     width: 58px;
     left: 4%;
@@ -187,29 +227,40 @@
     min-height: 280px;
     max-height: 330px;
   }
+
   .manImageWrapper {
     max-height: 320px;
   }
+
   .manImage {
     max-height: 310px;
   }
+
   .magicRingBackdrop {
     width: 240px;
     height: 240px;
   }
+
+  .heroWatchWrapper {
+    width: 100px;
+    height: 100px;
+    right: 6%;
+    bottom: 22%;
+  }
+
   .sandWatch {
     width: 58px;
   }
+
   .keyObject {
     width: 52px;
   }
+
   .openBook {
     width: 70px;
   }
+
   .closedBook {
     width: 48px;
   }
 }
-
-
-
