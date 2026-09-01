@@ -3,6 +3,7 @@ import "./index.css";
 import { HeroSection } from "./Components/HeroSection/HeroSection";
 import { StorySection } from "./Components/StorySection/StorySection";
 import { CountdownSection } from "./Components/CountdownSection/CountdownSection";
+import Form from "./Components/Form/Form";
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <HeroSection />
       <StorySection />
       <CountdownSection />
+      <Form/>
     </main>
   );
 }

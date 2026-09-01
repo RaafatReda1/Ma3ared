@@ -267,29 +267,72 @@
 
 @media (max-width: 768px) {
   .storySection {
-    padding: 80px 16px;
+    padding: 70px 14px;
+  }
+  .headerGroup {
+    margin-bottom: 40px;
+  }
+  .badge {
+    padding: 5px 14px;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+  .title {
+    font-size: clamp(1.35rem, 5.2vw, 2.2rem);
+    line-height: 1.35;
+    margin-bottom: 12px;
+  }
+  .subtitle {
+    font-size: clamp(0.85rem, 3.2vw, 1.05rem);
+    line-height: 1.55;
   }
   .cardsGrid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
+    margin-bottom: 36px;
   }
   .storyCard {
-    padding: 28px 22px;
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+  .iconCircle {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+  }
+  .cardText {
+    font-size: 0.95rem;
+    line-height: 1.65;
   }
   .mysteryBanner {
-    padding: 34px 20px;
+    padding: 28px 16px;
+    border-radius: 20px;
+  }
+  .bannerBadge {
+    padding: 5px 14px;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+  .bannerTitle {
+    font-size: clamp(1.8rem, 7vw, 2.6rem);
+    margin-bottom: 10px;
+  }
+  .bannerDesc {
+    font-size: 0.95rem;
+    line-height: 1.55;
   }
   .floatingBgObj {
-    opacity: 0.16;
+    opacity: 0.14;
   }
   .sandWatchBg {
-    width: 100px;
-  }
-  .book1Bg {
-    width: 110px;
-  }
-  .book2Bg {
     width: 90px;
   }
+  .book1Bg {
+    width: 100px;
+  }
+  .book2Bg {
+    width: 80px;
+  }
 }
+
 

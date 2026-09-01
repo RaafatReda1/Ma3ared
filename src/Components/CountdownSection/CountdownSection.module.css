@@ -209,29 +209,95 @@
 
 @media (max-width: 768px) {
   .countdownSection {
-    padding: 80px 16px;
+    padding: 70px 14px;
+  }
+  .headerGroup {
+    margin-bottom: 36px;
+  }
+  .badge {
+    padding: 5px 14px;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+  .title {
+    font-size: clamp(1.35rem, 5.2vw, 2.2rem);
+    line-height: 1.35;
+    margin-bottom: 12px;
+  }
+  .subtitle {
+    font-size: clamp(0.85rem, 3.2vw, 1.05rem);
+    line-height: 1.55;
+    max-width: 92%;
   }
   .timerGrid {
-    gap: 10px;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(3px, 1.5vw, 8px);
+    width: 100%;
+    margin-bottom: 36px;
   }
   .timerCard {
-    width: 85px;
-    height: 92px;
-    border-radius: 18px;
+    width: clamp(62px, 20vw, 80px);
+    height: clamp(72px, 22vw, 90px);
+    border-radius: 14px;
+    padding: 4px 2px;
+    flex-shrink: 0;
   }
   .digit {
-    font-size: 1.8rem;
+    font-size: clamp(1.4rem, 4.8vw, 1.9rem);
   }
   .label {
-    font-size: 0.78rem;
+    font-size: clamp(0.68rem, 2.2vw, 0.78rem);
+    margin-top: 3px;
   }
   .colon {
-    font-size: 1.6rem;
+    font-size: clamp(1rem, 3.5vw, 1.4rem);
+    flex-shrink: 0;
   }
   .actionRow {
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
+    width: 100%;
+  }
+  .hashtag {
+    font-size: 0.9rem;
+    padding: 6px 18px;
+  }
+  .primaryCta {
+    width: 100%;
+    max-width: 280px;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+  }
+  .floatingBgObj {
+    opacity: 0.14;
+  }
+  .keyBg {
+    width: 80px;
+  }
+  .watchBg {
+    width: 85px;
   }
 }
+
+@media (max-width: 380px) {
+  .timerCard {
+    width: 58px;
+    height: 66px;
+    border-radius: 12px;
+  }
+  .digit {
+    font-size: 1.25rem;
+  }
+  .label {
+    font-size: 0.65rem;
+  }
+  .colon {
+    font-size: 0.9rem;
+  }
+}
+
 
 
