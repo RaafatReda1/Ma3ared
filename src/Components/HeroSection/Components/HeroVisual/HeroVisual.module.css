@@ -191,10 +191,10 @@
   }
 
   .heroWatchWrapper {
-    width: 200px;
-    height: 200px;
-    right: 15%;
-    bottom: 25%;
+    width: 150px;
+    height: 150px;
+    right: 12%;
+    bottom: 24%;
   }
 
   .sandWatch {
@@ -241,12 +241,12 @@
     height: 240px;
   }
 
-  .heroWatchWrapper {
+  /* .heroWatchWrapper {
     width: 100px;
     height: 100px;
     right: 6%;
     bottom: 22%;
-  }
+  } */
 
   .sandWatch {
     width: 58px;
