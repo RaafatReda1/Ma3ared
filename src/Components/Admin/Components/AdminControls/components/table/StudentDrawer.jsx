@@ -1,24 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
-  FileText,
-  ExternalLink,
   Check,
   Clock,
   X,
   MessageCircle,
   Edit2,
   Trash2,
-  QrCode,
-  Download,
-  Copy,
+  Phone,
+  Mail,
+  Shield,
+  Sparkles,
+  Calendar,
+  Hash,
 } from "lucide-react";
 import { generateCustomWhatsAppLink } from "@/utils/whatsAppTemplateManager";
-import {
-  generateStudentQRDataURL,
-  downloadQRCode,
-  copyQRCodeToClipboard,
-  processAndCopyStudentQR,
-} from "@/utils/qrCodeManager";
 import styles from "../../AdminControls.module.css";
 
 const StudentDrawer = ({
@@ -30,22 +25,7 @@ const StudentDrawer = ({
   onOpenDelete,
   onSingleApproval,
 }) => {
-  const [qrDataUrl, setQrDataUrl] = useState(null);
-  const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    let isMounted = true;
-    if (student?.id) {
-      generateStudentQRDataURL(student).then((url) => {
-        if (isMounted) setQrDataUrl(url);
-      });
-    } else {
-      setQrDataUrl(null);
-    }
-    return () => {
-      isMounted = false;
-    };
-  }, [student?.id, student?.name]);
+  const [justActed, setJustActed] = useState(null); // 'approved' | 'rejected' | 'pending'
 
   if (!student) return null;
 
@@ -55,33 +35,18 @@ const StudentDrawer = ({
     whatsAppNameOptions
   );
 
-  const handleWhatsAppSend = async (e) => {
+  const handleWhatsAppSend = (e) => {
     e.preventDefault();
-    try {
-      await processAndCopyStudentQR(student);
-    } catch (err) {
-      console.error("Failed to generate/copy QR on WhatsApp send:", err);
-    }
     if (whatsAppLink) {
       window.open(whatsAppLink, "_blank", "noopener,noreferrer");
     }
   };
 
-  const handleDownloadQR = () => {
-    if (qrDataUrl) {
-      const cleanName = student.name ? student.name.replace(/\s+/g, "_") : student.id;
-      downloadQRCode(qrDataUrl, `pass_${cleanName}_${student.id}.png`);
-    }
-  };
-
-  const handleCopyQR = async () => {
-    if (qrDataUrl) {
-      const ok = await copyQRCodeToClipboard(qrDataUrl);
-      if (ok) {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      }
-    }
+  const handleApproval = (status) => {
+    const label = status === true ? "approved" : status === false ? "rejected" : "pending";
+    setJustActed(label);
+    setTimeout(() => setJustActed(null), 1800);
+    onSingleApproval(student.id, status);
   };
 
   const formatDate = (dateStr) => {
@@ -90,6 +55,7 @@ const StudentDrawer = ({
       return new Date(dateStr).toLocaleDateString("ar-EG", {
         day: "numeric",
         month: "long",
+        year: "numeric",
         hour: "2-digit",
         minute: "2-digit",
       });
@@ -98,167 +64,104 @@ const StudentDrawer = ({
     }
   };
 
+  const statusColor =
+    student.isApproved === true
+      ? { bg: "#dcfce7", color: "#15803d", label: "معتمد" }
+      : student.isApproved === false
+      ? { bg: "#fee2e2", color: "#b91c1c", label: "مرفوض" }
+      : { bg: "#fef3c7", color: "#b45309", label: "قيد المراجعة" };
+
   return (
     <div className={styles.expandedDrawer}>
-      {/* Left: QR Code Section */}
-      <div className={styles.drawerCertSection}>
 
-        {/* QR Code Section (Always available, status-aware) */}
-        <div className={styles.drawerQRCard}>
-          <div className={styles.drawerQRTitle}>
-            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-              <QrCode size={15} />
-              <span>رمز الدخول (QR Code)</span>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-              {student.isApproved === true ? (
-                <span style={{ fontSize: "0.72rem", color: "#16a34a", fontWeight: 800 }}>مقبول ✅</span>
-              ) : (
-                <span style={{ fontSize: "0.72rem", color: "#d97706", fontWeight: 800 }}>في الانتظار ⏳</span>
-              )}
-              <span className={styles.qrBadgeId}>ID: #{student.id}</span>
-            </div>
-          </div>
-
-          <div className={styles.drawerQRContent}>
-            {qrDataUrl ? (
-              <img
-                src={qrDataUrl}
-                alt={`QR Code #${student.id}`}
-                className={styles.drawerQRImage}
-              />
-            ) : (
-              <div
-                style={{
-                  width: 90,
-                  height: 90,
-                  background: "#f1f5f9",
-                  borderRadius: 8,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "0.75rem",
-                  color: "#94a3b8",
-                }}
-              >
-                جاري التوليد...
-              </div>
-            )}
-
-            <div className={styles.drawerQRActions}>
-              <button
-                type="button"
-                className={styles.drawerBtnQRDownload}
-                onClick={handleDownloadQR}
-                title="تحميل صورة الرمز على الجهاز"
-              >
-                <Download size={13} />
-                <span>تحميل الرمز</span>
-              </button>
-
-              <button
-                type="button"
-                className={`${styles.drawerBtnQRCopy} ${copied ? styles.copied : ""}`}
-                onClick={handleCopyQR}
-                title="نسخ صورة الرمز مباشرة للحافظة للصق في واتساب"
-              >
-                {copied ? <Check size={13} /> : <Copy size={13} />}
-                <span>{copied ? "تم النسخ!" : "نسخ للحافظة"}</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Right: Full Details Grid & Actions */}
+      {/* ── Left panel: Info cards ── */}
       <div className={styles.drawerInfoSection}>
-        {/* Details Grid — Ma3ared schema */}
+
+        {/* Status strip at top */}
+        <div className={styles.drawerStatusStrip} style={{ background: statusColor.bg, color: statusColor.color }}>
+          {student.isApproved === true ? <Check size={14} /> : student.isApproved === false ? <X size={14} /> : <Clock size={14} />}
+          <span>{statusColor.label}</span>
+          {student.isFirstTime && (
+            <span className={styles.drawerFirstTimeBadge}>
+              <Sparkles size={11} />
+              أول مرة
+            </span>
+          )}
+          {student.user_id && (
+            <span className={styles.drawerGoogleBadge}>
+              <Shield size={11} />
+              Google
+            </span>
+          )}
+          <span className={styles.drawerIdChip}>
+            <Hash size={10} />
+            {String(student.id).slice(0, 8)}
+          </span>
+        </div>
+
+        {/* Details grid */}
         <div className={styles.drawerDetailsGrid}>
           <div className={styles.drawerDetailCard}>
-            <span className={styles.drawerDetailLabel}>رقم الهاتف:</span>
-            <span
-              className={styles.drawerDetailVal}
-              style={{ direction: "ltr", textAlign: "right" }}
-            >
+            <span className={styles.drawerDetailLabel}>
+              <Phone size={11} /> رقم الهاتف
+            </span>
+            <span className={styles.drawerDetailVal} style={{ direction: "ltr", textAlign: "right", fontFamily: "monospace" }}>
               {student.phone || "—"}
             </span>
           </div>
 
           <div className={styles.drawerDetailCard}>
-            <span className={styles.drawerDetailLabel}>البريد الإلكتروني:</span>
-            <span
-              className={styles.drawerDetailVal}
-              style={{ direction: "ltr", textAlign: "right", fontSize: "0.8rem" }}
-            >
+            <span className={styles.drawerDetailLabel}>
+              <Mail size={11} /> البريد الإلكتروني
+            </span>
+            <span className={styles.drawerDetailVal} style={{ direction: "ltr", textAlign: "right", fontSize: "0.78rem" }}>
               {student.email || "—"}
             </span>
           </div>
 
           <div className={styles.drawerDetailCard}>
-            <span className={styles.drawerDetailLabel}>نوع الحضور:</span>
-            <span className={styles.drawerDetailVal}>
-              {student.isFirstTime === true
-                ? "حضور لأول مرة ✦"
-                : student.isFirstTime === false
-                ? "حضور سابق"
-                : "—"}
+            <span className={styles.drawerDetailLabel}>
+              <Calendar size={11} /> تاريخ التسجيل
             </span>
-          </div>
-
-          <div className={styles.drawerDetailCard}>
-            <span className={styles.drawerDetailLabel}>حساب جوجل موثق:</span>
-            <span className={styles.drawerDetailVal}>
-              {student.user_id ? "نعم (مسجل بـ Google)" : "لا"}
-            </span>
-          </div>
-
-          <div className={styles.drawerDetailCard}>
-            <span className={styles.drawerDetailLabel}>تاريخ التسجيل:</span>
-            <span className={styles.drawerDetailVal} style={{ fontSize: "0.8rem" }}>
+            <span className={styles.drawerDetailVal} style={{ fontSize: "0.78rem" }}>
               {formatDate(student.created_at)}
-            </span>
-          </div>
-
-          <div className={styles.drawerDetailCard}>
-            <span className={styles.drawerDetailLabel}>معرّف النظام:</span>
-            <span
-              className={styles.drawerDetailVal}
-              style={{ direction: "ltr", textAlign: "right", fontSize: "0.78rem", fontFamily: "monospace" }}
-            >
-              {student.id}
             </span>
           </div>
         </div>
 
-        {/* Drawer Bottom Actions */}
-        <div className={styles.drawerBottomActions}>
-          {/* Approval Buttons */}
+        {/* ── Action buttons ── */}
+        <div className={styles.drawerActionsRow}>
+
+          {/* Approval group */}
           <div className={styles.drawerApprovalGroup}>
             <button
               type="button"
-              className={styles.drawerBtnApprove}
-              onClick={() => onSingleApproval(student.id, true)}
+              className={`${styles.drawerBtnApprove} ${justActed === "approved" ? styles.actedFlash : ""}`}
+              onClick={() => handleApproval(true)}
+              disabled={student.isApproved === true}
             >
-              <Check size={14} />
-              <span>اعتماد وقبول الطالب</span>
+              <Check size={15} />
+              <span>قبول</span>
             </button>
 
             <button
               type="button"
-              className={styles.drawerBtnPending}
-              onClick={() => onSingleApproval(student.id, null)}
+              className={`${styles.drawerBtnPending} ${justActed === "pending" ? styles.actedFlash : ""}`}
+              onClick={() => handleApproval(null)}
+              disabled={student.isApproved === null}
             >
-              <Clock size={14} />
-              <span>إعادة للانتظار</span>
+              <Clock size={15} />
+              <span>انتظار</span>
             </button>
 
             <button
               type="button"
-              className={styles.drawerBtnReject}
-              onClick={() => onSingleApproval(student.id, false)}
+              className={`${styles.drawerBtnReject} ${justActed === "rejected" ? styles.actedFlash : ""}`}
+              onClick={() => handleApproval(false)}
+              disabled={student.isApproved === false}
             >
-              <X size={14} />
-              <span>رفض الطلب</span>
+              <X size={15} />
+              <span>رفض</span>
             </button>
 
             {student.phone && (
@@ -266,27 +169,23 @@ const StudentDrawer = ({
                 type="button"
                 onClick={handleWhatsAppSend}
                 className={styles.drawerBtnWhatsApp}
-                title={
-                  student.isApproved === true
-                    ? "تحميل ونسخ رمز الـ QR ثم فتح محادثة الواتساب"
-                    : "إرسال رسالة عبر واتساب"
-                }
+                title="فتح محادثة واتساب مع الطالب"
               >
-                <MessageCircle size={14} />
-                <span>إرسال واتساب</span>
+                <MessageCircle size={15} />
+                <span>واتساب</span>
               </button>
             )}
           </div>
 
           {/* Edit & Delete */}
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div className={styles.drawerSecondaryActions}>
             <button
               type="button"
               className={styles.drawerBtnEdit}
               onClick={() => onOpenEdit(student)}
             >
               <Edit2 size={13} />
-              <span>تعديل البيانات</span>
+              <span>تعديل</span>
             </button>
 
             <button
@@ -305,4 +204,3 @@ const StudentDrawer = ({
 };
 
 export default StudentDrawer;
-

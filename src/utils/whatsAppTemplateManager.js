@@ -7,14 +7,10 @@ import {
 import { formatWhatsAppNumber } from "./adminStudentActions";
 
 export const DEFAULT_WHATSAPP_TEMPLATE = `مرحباً {name} 👋
-يسرنا إبلاغك بأنه قد تم *قبول طلب تسجيلك* في إيفنت رسالة الطبي بنجاح! 🎉
+يسرنا إبلاغك بأنه قد تم *اعتماد تسجيلك* في حفلة معارض مدينة نصر 2026 بنجاح! 🎉
 
-📍 *نقطة التجمع والباص:* {place}
-🎓 *الجامعة:* {university}
-📚 *الفرقة الدراسية:* {academicYear}
-
-نتطلع لرؤيتك ونتمنى لك يوماً رائعاً ومميزاً معنا! ✨
-_فريق تنظيم أطباء الخير - جمعية رسالة_`;
+نتطلع لرؤيتك يوم الجمعة 4 سبتمبر ونتمنى لك يوماً رائعاً ومميزاً معنا! ✨
+_فريق معارض ملابس - رسالة للخير دايماً عنوان_`;
 
 const STORAGE_KEY = "resala_admin_whatsapp_template";
 
@@ -130,9 +126,6 @@ export const compileWhatsAppMessage = (
     "{firstName}": options.autoArabic ? arabicFirstName : firstName,
     "{fullName}": options.autoArabic ? arabicFullName : cleanedName,
     "{arabicName}": arabicFullName,
-    "{university}": student.university || "جامعتك المحددة",
-    "{place}": student.place || "نقطة التجمع المحددة بالاستمارة",
-    "{academicYear}": student.academicYear || "الفرقة المسجلة",
     "{phone}": student.phone || "—",
     "{email}": student.email || "—",
   };

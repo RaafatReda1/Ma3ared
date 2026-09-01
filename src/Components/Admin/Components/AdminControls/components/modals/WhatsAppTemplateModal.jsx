@@ -58,12 +58,9 @@ const WhatsAppTemplateModal = ({
   const activeStudent =
     allStudents.find((s) => s.id === selectedStudentId) ||
     allStudents[0] || {
-      name: "LOJAIN AHMED FARAHAT 949",
-      phone: "01012345678",
-      email: "lojain@example.com",
-      university: "جامعة القاهرة",
-      academicYear: "فرقة أولى",
-      place: "مسرح رسالة بالمقطم (مكان الإيفنت)",
+      name: "منة الله حاتم محمد",
+      phone: "01016245851",
+      email: "mennahatem406@gmail.com",
     };
 
   const compiledMessage = compileWhatsAppMessage(currentTemplate, activeStudent, {

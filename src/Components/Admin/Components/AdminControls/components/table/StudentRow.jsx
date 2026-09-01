@@ -97,7 +97,7 @@ const StudentRow = ({
               <span className={styles.studentNameText}>{student.name || "بدون اسم"}</span>
               {student.user_id && (
                 <span className={styles.verifiedIcon} title="مسجل بحساب Google موثق">
-                  <ShieldCheck size={14} className="text-sky-400" />
+                  <ShieldCheck size={14} className="text-sky-500" />
                 </span>
               )}
             </div>
@@ -116,7 +116,7 @@ const StudentRow = ({
       <td className={styles.colAttendance}>
         {student.isFirstTime ? (
           <span className={`${styles.badge} ${styles.badgeFirstTime}`}>
-            <Sparkles size={13} />
+            <Sparkles size={12} />
             <span>أول مرة</span>
           </span>
         ) : (
@@ -153,72 +153,63 @@ const StudentRow = ({
         <span className={styles.dateText}>{formatDate(student.created_at)}</span>
       </td>
 
-      {/* Quick Actions */}
+      {/* Quick Actions Toolbar */}
       <td className={styles.colActions} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.rowActionsClean}>
-          {/* Quick Approve / Reject Buttons */}
+        <div className={styles.rowActionsToolbar}>
+          {/* Quick Approve button */}
           {student.isApproved !== true && (
             <button
               type="button"
-              className={styles.btnApproveQuick}
+              className={styles.rowBtnApprove}
               onClick={() => onSingleApproval(student.id, true)}
-              title="اعتماد المشارك"
+              title="اعتماد وقبول"
             >
-              <Check size={14} />
+              <Check size={13} />
             </button>
           )}
 
+          {/* Quick Reject button */}
           {student.isApproved !== false && (
             <button
               type="button"
-              className={styles.btnRejectQuick}
+              className={styles.rowBtnReject}
               onClick={() => onSingleApproval(student.id, false)}
               title="رفض الطلب"
             >
-              <X size={14} />
+              <X size={13} />
             </button>
           )}
 
-          {/* Direct WhatsApp Message */}
+          {/* WhatsApp Direct Action */}
           {student.phone && (
             <button
               type="button"
               onClick={handleWhatsAppSend}
-              className={styles.btnActionWhatsApp}
-              title="إرسال رسالة واتساب مخصصة"
+              className={styles.rowBtnWhatsApp}
+              title="إرسال رسالة واتساب"
             >
-              <MessageCircle size={15} />
+              <MessageCircle size={14} />
             </button>
           )}
 
-          {/* Details */}
+          {/* Edit Button */}
           <button
             type="button"
-            className={styles.btnActionEye}
-            onClick={() => onOpenDetails(student)}
-            title="عرض التفاصيل الكاملة"
-          >
-            <Eye size={15} />
-          </button>
-
-          {/* Edit */}
-          <button
-            type="button"
-            className={styles.btnActionEdit}
+            className={styles.rowBtnEdit}
             onClick={() => onOpenEdit(student)}
             title="تعديل البيانات"
           >
-            <Edit2 size={14} />
+            <Edit2 size={13} />
           </button>
 
-          {/* Delete */}
+          {/* Delete Button */}
           <button
             type="button"
-            className={styles.btnActionDelete}
+            className={styles.rowBtnDelete}
             onClick={() => onOpenDelete(student)}
             title="حذف المشارك"
           >
-            <Trash2 size={14} />
+            <Trash2 size={13} />
           </button>
         </div>
       </td>

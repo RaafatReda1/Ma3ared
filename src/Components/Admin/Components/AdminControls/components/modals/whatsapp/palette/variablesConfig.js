@@ -1,11 +1,8 @@
-/** variablesConfig.js — static tag definitions, no React */
+/** variablesConfig.js — Ma3ared schema: only name, phone, email */
 export const AVAILABLE_VARIABLES = [
-  { tag: "{name}",          label: "اسم الطالب",          iconName: "UserCheck",     desc: "حسب الإعداد المختار" },
-  { tag: "{firstName}",     label: "الاسم الأول فقط",      iconName: "Sparkles",      desc: "مثال: لوجين أو أحمد" },
-  { tag: "{fullName}",      label: "الاسم كاملاً",          iconName: "FileText",      desc: "كامل بدون أرقام" },
-  { tag: "{place}",         label: "نقطة التجمع / المقر",  iconName: "MapPin",        desc: "المسجل بالاستمارة" },
-  { tag: "{university}",    label: "الجامعة",               iconName: "Building2",     desc: "جامعة الطالب" },
-  { tag: "{academicYear}",  label: "الفرقة الدراسية",       iconName: "GraduationCap", desc: "السنة الدراسية" },
-  { tag: "{phone}",         label: "رقم الهاتف",            iconName: "Phone",         desc: "رقم الطالب" },
-  { tag: "{email}",         label: "البريد الإلكتروني",     iconName: "Mail",          desc: "إيميل الطالب" },
+  { tag: "{name}",       label: "اسم المشارك",       iconName: "UserCheck", desc: "حسب الإعداد المختار" },
+  { tag: "{firstName}",  label: "الاسم الأول فقط",   iconName: "Sparkles",  desc: "مثال: منة أو أحمد"  },
+  { tag: "{fullName}",   label: "الاسم كاملاً",       iconName: "FileText",  desc: "الاسم كامل بدون أرقام" },
+  { tag: "{phone}",      label: "رقم الهاتف",         iconName: "Phone",     desc: "رقم المشارك"         },
+  { tag: "{email}",      label: "البريد الإلكتروني",  iconName: "Mail",      desc: "إيميل المشارك"       },
 ];
