@@ -20,16 +20,31 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 80px 40px 30px;
+  padding: 80px 40px 40px;
   z-index: 5;
 }
 
 @media (max-width: 1024px) {
+  .heroWrapper {
+    min-height: 100vh;
+  }
+
   .heroContentContainer {
+    min-height: 100vh;
     flex-direction: column-reverse;
-    justify-content: flex-end;
-    padding-top: 100px;
-    padding-bottom: 50px;
-    min-height: auto;
+    justify-content: center;
+    align-items: center;
+    padding: 90px 20px 50px;
+    gap: 30px;
   }
 }
+
+@media (max-width: 480px) {
+  .heroContentContainer {
+    padding: 80px 16px 40px;
+    gap: 24px;
+  }
+}
+
+
+
