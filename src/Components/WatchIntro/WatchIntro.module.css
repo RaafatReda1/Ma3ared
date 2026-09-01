@@ -16,11 +16,11 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 55% 55% at 50% 48%,
+    radial-gradient(ellipse 55% 55% at 50% 45%,
       rgba(11, 35, 70, 0.85) 0%,
       rgba(3, 14, 38, 0.6) 55%,
       transparent 100%),
-    radial-gradient(ellipse 35% 30% at 50% 48%,
+    radial-gradient(ellipse 35% 30% at 50% 45%,
       rgba(223, 156, 76, 0.08) 0%,
       transparent 70%);
   pointer-events: none;
@@ -37,13 +37,34 @@
   opacity: 0.5;
 }
 
+/* ── Logo positioned just above the 3D watch model ── */
+.topLogo {
+  position: absolute;
+  bottom: calc(50% + min(165px, 28vw));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.topLogo img {
+  height: clamp(55px, 7.5vw, 82px);
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px rgba(223, 156, 76, 0.45));
+}
+
 /* ── Three.js Canvas wrapper ─────────────────────── */
 .canvasWrap {
   position: relative;
-  width: min(520px, 80vw);
-  height: min(520px, 80vw);
+  width: min(470px, 76vw);
+  height: min(470px, 76vw);
   flex-shrink: 0;
-  margin-top: -40px;
+  margin-top: -60px;
   z-index: 2;
 }
 
@@ -52,19 +73,19 @@
   position: absolute;
   inset: 50%;
   transform: translate(-50%, -50%);
-  width: 340px;
-  height: 340px;
+  width: 320px;
+  height: 320px;
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(223, 156, 76, 0.10) 0%,
+    rgba(223, 156, 76, 0.12) 0%,
     transparent 70%
   );
   box-shadow: 0 0 80px 20px rgba(223, 156, 76, 0.06);
   pointer-events: none;
 }
 
-/* ── Floating objects layer ──────────────────────── */
+/* ── Floating objects layer (Kept at Side/Upper Perimeter) ── */
 .floatingLayer {
   position: absolute;
   inset: 0;
@@ -86,30 +107,30 @@
   filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
 }
 
-/* Individual positions — scattered around viewport */
+/* Placed safely away from top logo and bottom text */
 .sandWatchFloat {
-  top: 12%;
-  left: 7%;
+  top: 16%;
+  left: 6%;
   width: 110px;
   height: 110px;
 }
 
 .keyFloat {
-  top: 8%;
-  right: 8%;
+  top: 15%;
+  right: 7%;
   width: 95px;
   height: 95px;
 }
 
 .openBookFloat {
-  bottom: 14%;
-  right: 6%;
-  width: 130px;
-  height: 100px;
+  top: 48%;
+  right: 5%;
+  width: 120px;
+  height: 95px;
 }
 
 .closedBookFloat {
-  bottom: 18%;
+  top: 46%;
   left: 5%;
   width: 85px;
   height: 85px;
@@ -136,95 +157,110 @@
 .floatAnim2 { animation: introFloat2 3.8s ease-in-out infinite; }
 .floatAnim3 { animation: introFloat3 5.2s ease-in-out infinite; }
 
-/* ── Text block ──────────────────────────────────── */
+/* ── Dedicated Text Block (Zero Overlap Zone) ─────── */
 .textBlock {
   position: absolute;
-  bottom: 12%;
+  bottom: clamp(65px, 9vh, 95px);
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  z-index: 3;
+  z-index: 5;
   pointer-events: none;
-  width: min(620px, 90vw);
+  width: min(680px, 92vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .textLine {
   opacity: 0;
   transform: translateY(18px);
   font-family: var(--font-arabic);
-  color: var(--color-text-muted);
-  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  color: #e2dfd5;
+  font-size: clamp(0.95rem, 2.2vw, 1.25rem);
   font-weight: 500;
   line-height: 1.8;
   letter-spacing: 0.02em;
   margin-bottom: 4px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9), 0 4px 20px rgba(4, 6, 17, 0.95);
   will-change: opacity, transform;
 }
 
 .textLine.goldLine {
   color: var(--color-gold-light);
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-size: clamp(1.05rem, 2.5vw, 1.38rem);
   font-weight: 700;
-  margin-top: 8px;
-}
-
-/* ── Top logo ────────────────────────────────────── */
-.topLogo {
-  position: absolute;
-  top: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 4;
-  opacity: 0;
-}
-
-.topLogo img {
-  height: 44px;
-  width: auto;
-  filter: drop-shadow(0 0 12px rgba(223, 156, 76, 0.4));
+  margin-top: 6px;
+  text-shadow: 0 0 16px rgba(223, 156, 76, 0.5), 0 2px 12px rgba(0, 0, 0, 0.95);
 }
 
 /* ── Skip button ─────────────────────────────────── */
 .skipBtn {
   position: absolute;
-  bottom: 28px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 5;
+  z-index: 10;
   opacity: 0;
-  background: transparent;
+  background: rgba(4, 6, 17, 0.6);
   border: 1px solid rgba(223, 156, 76, 0.35);
-  color: rgba(243, 200, 126, 0.7);
+  color: rgba(243, 200, 126, 0.75);
   font-family: var(--font-arabic);
   font-size: 0.85rem;
-  padding: 8px 24px;
+  padding: 7px 22px;
   border-radius: 30px;
   cursor: pointer;
   letter-spacing: 0.06em;
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  transition: all 0.3s ease;
   will-change: opacity;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
 }
 
 .skipBtn:hover {
-  background: rgba(223, 156, 76, 0.12);
+  background: rgba(223, 156, 76, 0.15);
   color: var(--color-gold-light);
-  border-color: rgba(223, 156, 76, 0.6);
+  border-color: rgba(223, 156, 76, 0.65);
+  transform: translateX(-50%) translateY(-2px);
 }
 
 /* ── Responsive ──────────────────────────────────── */
 @media (max-width: 640px) {
-  .canvasWrap {
-    width: min(340px, 88vw);
-    height: min(340px, 88vw);
-    margin-top: -20px;
+  .topLogo {
+    bottom: calc(50% + min(130px, 34vw));
   }
-  .sandWatchFloat { width: 72px; height: 72px; top: 10%; left: 3%; }
-  .keyFloat       { width: 62px; height: 62px; top: 6%; right: 4%; }
-  .openBookFloat  { width: 88px; height: 68px; bottom: 18%; right: 3%; }
-  .closedBookFloat{ width: 58px; height: 58px; bottom: 22%; left: 3%; }
-  .textBlock      { bottom: 10%; }
-  .textLine       { font-size: 0.92rem; }
-  .textLine.goldLine { font-size: 1rem; }
-  .topLogo img    { height: 34px; }
+
+  .topLogo img {
+    height: clamp(44px, 11vw, 60px);
+  }
+
+  .canvasWrap {
+    width: min(320px, 82vw);
+    height: min(320px, 82vw);
+    margin-top: -35px;
+  }
+
+  .sandWatchFloat { width: 68px; height: 68px; top: 12%; left: 3%; }
+  .keyFloat       { width: 58px; height: 58px; top: 11%; right: 4%; }
+  .openBookFloat  { width: 75px; height: 60px; top: 48%; right: 2%; }
+  .closedBookFloat{ width: 52px; height: 52px; top: 46%; left: 2%; }
+
+  .textBlock {
+    bottom: clamp(58px, 8vh, 80px);
+    width: 94vw;
+  }
+
+  .textLine {
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  .textLine.goldLine {
+    font-size: 0.96rem;
+  }
+
+  .skipBtn {
+    bottom: 14px;
+    padding: 5px 18px;
+    font-size: 0.78rem;
+  }
 }

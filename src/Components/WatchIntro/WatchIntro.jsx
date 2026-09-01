@@ -107,14 +107,19 @@ export default function WatchIntro({ onDone }) {
   // ─── Entrance Animations ──────────────────────────────────────────
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // 1. Top Logo entrance
-      gsap.to(logoRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        delay: 0.2,
-        ease: 'power3.out',
-      });
+      // 1. Top Logo entrance - perfectly centered horizontally
+      gsap.fromTo(
+        logoRef.current,
+        { opacity: 0, y: -20, xPercent: -50 },
+        {
+          opacity: 1,
+          y: -30,
+          xPercent: -50,
+          duration: 0.85,
+          delay: 0.2,
+          ease: 'power3.out',
+        }
+      );
 
       // 2. Floating objects smooth entrance
       FLOAT_OBJECTS.forEach(({ key, enterDelay }) => {
@@ -146,15 +151,20 @@ export default function WatchIntro({ onDone }) {
         });
       });
 
-      // 4. Skip button entrance
-      gsap.to(skipRef.current, {
-        opacity: 1,
-        duration: 0.6,
-        delay: 1.8,
-        ease: 'power2.out',
-      });
+      // 4. Skip button entrance - perfectly centered horizontally
+      gsap.fromTo(
+        skipRef.current,
+        { opacity: 0, xPercent: -50 },
+        {
+          opacity: 1,
+          xPercent: -50,
+          duration: 0.6,
+          delay: 1.8,
+          ease: 'power2.out',
+        }
+      );
 
-      // 5. Full rotation sequence concludes at 5.8s then triggers smooth glide
+      // 5. Full rotation sequence concludes at 10s then triggers smooth glide
       const timer = setTimeout(runExit, 10000);
       return () => clearTimeout(timer);
     });
@@ -170,7 +180,7 @@ export default function WatchIntro({ onDone }) {
       <div className={styles.bgParticles} />
 
       {/* Top Logo */}
-      <div ref={logoRef} className={styles.topLogo} style={{ opacity: 0, transform: 'translateY(-10px)' }}>
+      <div ref={logoRef} className={styles.topLogo}>
         <img src="/logoMa3ared.png" alt="معارض مدينة نصر" />
       </div>
 
