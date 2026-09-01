@@ -1,29 +1,29 @@
 import React from "react";
+import { User, Mail, Phone, CheckSquare } from "lucide-react";
 import styles from "./FormInputs.module.css";
-const FormInputs = ({ form, setForm }) => {
+
+const FormInputs = ({ form, setForm, errors = {}, clearFieldError }) => {
   const inputs = [
     {
-      label: "الاسم",
+      label: "الاسم الثلاثي",
       type: "text",
-      placeholder: "احمد محمد علي",
+      placeholder: "أحمد محمد علي",
       name: "name",
+      icon: <User size={18} className={styles.inputIcon} />,
     },
     {
-      label: "الايميل",
+      label: "البريد الإلكتروني",
       type: "email",
       placeholder: "ahmed@example.com",
       name: "email",
+      icon: <Mail size={18} className={styles.inputIcon} />,
     },
     {
-      label: "رقم الهاتف",
-      type: "number",
+      label: "رقم الهاتف (واتساب)",
+      type: "tel",
       placeholder: "01012345678",
       name: "phone",
-    },
-    {
-      label: "اول مره احضر حفلة معارض مدينة نصر",
-      type: "checkbox",
-      name: "isFirstTime",
+      icon: <Phone size={18} className={styles.inputIcon} />,
     },
   ];
 
@@ -33,6 +33,9 @@ const FormInputs = ({ form, setForm }) => {
       ...prevForm,
       [name]: value,
     }));
+    if (clearFieldError) {
+      clearFieldError(name);
+    }
   };
 
   const handleCheckboxChange = (event) => {
@@ -42,23 +45,58 @@ const FormInputs = ({ form, setForm }) => {
       [name]: checked,
     }));
   };
+
   return (
     <div className={styles.formInputsContainer}>
-      {inputs.map((input, index) => (
-        <div className={styles.formInput} key={index}>
-          <label>{input.label}</label>
+      {inputs.map((input) => {
+        const hasError = Boolean(errors[input.name]);
+        return (
+          <div
+            className={`${styles.formInputGroup} ${
+              hasError ? styles.hasError : ""
+            }`}
+            key={input.name}
+          >
+            <label className={styles.inputLabel}>
+              {input.label} <span className={styles.requiredStar}>*</span>
+            </label>
+            <div className={styles.inputWrapper}>
+              {input.icon}
+              <input
+                type={input.type}
+                placeholder={input.placeholder}
+                name={input.name}
+                value={form[input.name] || ""}
+                onChange={handleInputChange}
+                className={styles.textInput}
+                autoComplete="off"
+              />
+            </div>
+            {hasError && (
+              <span className={styles.errorText}>{errors[input.name]}</span>
+            )}
+          </div>
+        );
+      })}
+
+      {/* Checkbox field */}
+      <div className={styles.checkboxGroup}>
+        <label className={styles.checkboxLabel}>
           <input
-            type={input.type}
-            placeholder={input.placeholder}
-            name={input.name}
-            onChange={
-              input.type === "checkbox"
-                ? handleCheckboxChange
-                : handleInputChange
-            }
+            type="checkbox"
+            name="isFirstTime"
+            checked={Boolean(form.isFirstTime)}
+            onChange={handleCheckboxChange}
+            className={styles.checkboxInput}
           />
-        </div>
-      ))}
+          <span className={styles.checkboxCustom}>
+            <CheckSquare size={16} />
+          </span>
+          <span className={styles.checkboxText}>
+            أول مرة أحضر حفلة معارض مدينة نصر
+          </span>
+        </label>
+      </div>
     </div>
   );
 };

@@ -59,6 +59,10 @@
   --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
