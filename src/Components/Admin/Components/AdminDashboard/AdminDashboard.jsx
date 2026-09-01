@@ -91,7 +91,11 @@ const AdminDashboard = () => {
 
       {/* ── 3. Charts Row 1: Registration Trend (2/3) + Donut Status (1/3) ── */}
       <div className={styles.twoColGrid}>
-        <RegistrationTrend data={data.timelineData} loading={loading} />
+        <RegistrationTrend
+          data={data.timelineData}
+          registrationDates={data.registrationDates}
+          loading={loading}
+        />
         <ApprovalStatusChart data={data.approvalStatusData} loading={loading} />
       </div>
 

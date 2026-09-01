@@ -138,6 +138,7 @@ export async function getDashboardData() {
         firstTimeRate: totalCount > 0 ? Math.round((firstTimeCount / totalCount) * 100) : 0,
       },
       timelineData,
+      registrationDates: all.map((s) => s.created_at),
       approvalStatusData,
       attendanceTypeData,
       pendingStudents,
