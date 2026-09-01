@@ -7,36 +7,55 @@ import {
   ChevronLeft,
   LogOut,
   FileText,
+  ShieldCheck,
 } from "lucide-react";
 import styles from "./AdminAside.module.css";
 import supabase from "@/utils/supabaseClient";
-
-const navLinks = [
-  {
-    id: "dashboard",
-    icon: <LayoutDashboard size={22} />,
-    label: "لوحة التحكم",
-    path: "/dashboard",
-  },
-  {
-    id: "students",
-    icon: <Users size={22} />,
-    label: "المسجلين",
-    path: "/students",
-  },
-  {
-    id: "reports",
-    icon: <FileText size={22} />,
-    label: "التقارير",
-    path: "/reports",
-  },
-];
+import { getAdminProfile } from "@/utils/activityLogger";
 
 const AdminAside = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isSudo, setIsSudo] = useState(false);
   const location = useLocation();
   const asideRef = useRef(null);
   const logoRef = useRef(null);
+
+  useEffect(() => {
+    getAdminProfile().then((profile) => {
+      setIsSudo(Boolean(profile?.sudo));
+    });
+  }, []);
+
+  const navLinks = [
+    {
+      id: "dashboard",
+      icon: <LayoutDashboard size={22} />,
+      label: "لوحة التحكم",
+      path: "/dashboard",
+    },
+    {
+      id: "students",
+      icon: <Users size={22} />,
+      label: "المسجلين",
+      path: "/students",
+    },
+    {
+      id: "reports",
+      icon: <FileText size={22} />,
+      label: "التقارير",
+      path: "/reports",
+    },
+    ...(isSudo
+      ? [
+          {
+            id: "admins",
+            icon: <ShieldCheck size={22} />,
+            label: "المسؤولين",
+            path: "/admins",
+          },
+        ]
+      : []),
+  ];
 
   // Derive active link from URL
   const activeId =

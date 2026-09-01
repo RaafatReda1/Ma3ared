@@ -106,6 +106,11 @@ export const getAdminProfile = async (forceRefresh = false) => {
 };
 
 /**
+ * Cache for deduplicating rapid identical log calls within 2000ms
+ */
+const recentLogsCache = new Map();
+
+/**
  * Core activity logger function.
  * Inserts an activity log record into public.activity_logs safely.
  * Non-blocking / fire-and-forget.
@@ -119,6 +124,17 @@ export const logActivity = async ({
   metadata = {},
   actorOverride = null,
 }) => {
+  // Deduplicate identical rapid logs
+  const dedupKey = `${action_type}_${target_id || ""}_${target_name || ""}_${description || ""}`;
+  const now = Date.now();
+  if (recentLogsCache.has(dedupKey) && now - recentLogsCache.get(dedupKey) < 2000) {
+    return;
+  }
+  recentLogsCache.set(dedupKey, now);
+  if (recentLogsCache.size > 100) {
+    recentLogsCache.clear();
+  }
+
   try {
     const clientInfo = getClientInfo();
     let actor_id = null;
