@@ -1,0 +1,2235 @@
+/* ═══════════════════════════════════════════════════════════
+   ADMIN CONTROLS — Pure CSS Module (Self-Contained & Robust)
+   ═══════════════════════════════════════════════════════════ */
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.controlsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  direction: rtl;
+  color: #1e293b;
+  font-family: inherit;
+  animation: pageEnter 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Top Header ── */
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mainTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subtitle {
+  font-size: 0.86rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ── Standard Action Buttons ── */
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: #3ab9ac;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(58, 185, 172, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btnPrimary:hover {
+  background: #2ea396;
+  transform: translateY(-1px);
+}
+
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: #ffffff;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+.btnSecondary:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+
+.btnPdf {
+  background: #ef4444;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25);
+}
+
+.btnPdf:hover {
+  background: #dc2626;
+}
+
+/* ── Preset Filter Cards ── */
+.presetGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+
+.presetCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.presetCard:hover {
+  border-color: #3ab9ac;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.presetCard.activePreset {
+  background: #f0fdfa;
+  border-color: #3ab9ac;
+  box-shadow: 0 0 0 2px rgba(58, 185, 172, 0.3);
+}
+
+.presetLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.presetTitle {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.presetBadge {
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.activePreset .presetBadge {
+  background: #3ab9ac;
+  color: #ffffff;
+}
+
+/* ── Filter Bar ── */
+.filterBarCard {
+  background: #ffffff;
+  padding: 16px 20px;
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.filterTopRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.searchWrap {
+  position: relative;
+  flex: 1;
+  min-width: 280px;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 11px 44px 11px 16px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #0f172a;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.searchInput:focus {
+  background: #ffffff;
+  border-color: #3ab9ac;
+  box-shadow: 0 0 0 3px rgba(58, 185, 172, 0.15);
+}
+
+.filterSubRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.filterLabelWrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.filterSelect {
+  padding: 8px 12px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #334155;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  max-width: 200px;
+}
+
+.filterSelect:focus {
+  border-color: #3ab9ac;
+  background: #ffffff;
+}
+
+.dateInput {
+  padding: 7px 10px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #334155;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.clearFilterBtn {
+  background: transparent;
+  border: 1px dashed #cbd5e1;
+  color: #64748b;
+  padding: 7px 12px;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-right: auto;
+}
+
+.clearFilterBtn:hover {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  color: #dc2626;
+}
+
+/* ── Bulk Bar ── */
+.bulkBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 20px;
+  background: #0f172a;
+  color: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
+  margin-bottom: 12px;
+}
+
+.bulkInfo {
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bulkActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.bulkBtnApprove {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: #16a34a;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.bulkBtnReject {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: #d97706;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.bulkBtnDelete {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: #dc2626;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ── Table Card ── */
+.tableCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.tableResponsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.studentsTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: right;
+  font-size: 0.88rem;
+}
+
+.studentsTable th {
+  padding: 14px 16px;
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 800;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.studentsTable td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #1e293b;
+  vertical-align: middle;
+}
+
+.tableRow {
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.tableRow:hover {
+  background: #f8fafc;
+}
+
+.tableRow.rowExpanded {
+  background: #f0fdfa;
+}
+
+/* Student Name Cell (Clean & Professional) */
+.studentCell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.studentAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #df9c4c 0%, #f59e0b 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1rem;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(223, 156, 76, 0.2);
+}
+
+.studentDetailsText {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.studentNameText {
+  font-weight: 800;
+  font-size: 0.94rem;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+.verifiedIcon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.studentEmailText {
+  font-size: 0.78rem;
+  color: #64748b;
+  direction: ltr;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+.studentPhoneText {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.76rem;
+  color: #475569;
+  font-family: monospace;
+  direction: ltr;
+  text-align: right;
+}
+
+/* Status Badges */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.statusApproved {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.statusPending {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.statusRejected {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+/* Clean Row Actions */
+.rowActionsClean {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btnActionWhatsApp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #22c55e;
+  color: #ffffff;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(34, 197, 94, 0.25);
+  transition: transform 0.15s ease;
+}
+
+.btnActionWhatsApp:hover {
+  transform: scale(1.08);
+}
+
+.btnActionEye {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btnActionEye:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.expandToggleBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: transparent;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.expandToggleBtn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.btnActionQR {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #f3e8ff;
+  color: #7e22ce;
+  border: 1px solid #e9d5ff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 3px rgba(126, 34, 206, 0.1);
+}
+
+.btnActionQR:hover {
+  background: #7e22ce;
+  color: #ffffff;
+  border-color: #7e22ce;
+  transform: scale(1.08);
+}
+
+.btnActionQRApproved {
+  background: #7e22ce;
+  color: #ffffff;
+  border-color: #6b21a8;
+  box-shadow: 0 2px 6px rgba(126, 34, 206, 0.25);
+}
+
+.btnActionQRApproved:hover {
+  background: #6b21a8;
+  border-color: #581c87;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ACCORDION INLINE DRAWER (Properly Styled with CSS Modules)
+   ═══════════════════════════════════════════════════════════ */
+
+.drawerCell {
+  padding: 0 !important;
+  background: #f8fafc;
+}
+
+.expandedDrawer {
+  padding: 24px;
+  background: #ffffff;
+  border-bottom: 2px solid #3ab9ac;
+  border-top: 1px solid #e2e8f0;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 28px;
+}
+
+.drawerCertSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.drawerCertTitle {
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #0f766e;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.drawerCertImage {
+  width: 100%;
+  max-height: 240px;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  background: #0f172a;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.drawerCertImage:hover {
+  transform: scale(1.02);
+}
+
+.drawerCertImageFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: #64748b;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.drawerCertLink {
+  color: #0d9488;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.drawerCertLink:hover {
+  text-decoration: underline;
+}
+
+.noCertBox {
+  height: 180px;
+  background: #f1f5f9;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-size: 0.85rem;
+  font-weight: 700;
+  gap: 8px;
+}
+
+/* QR Code Section inside Drawer (Event Pass) */
+.drawerQRCard {
+  margin-top: 14px;
+  padding: 16px;
+  background: #f0fdfa;
+  border: 1px solid #ccfbf1;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(15, 118, 110, 0.05);
+}
+
+.drawerQRTitle {
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #0f766e;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.qrBadgeId {
+  background: #ccfbf1;
+  color: #0f766e;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid #99f6e4;
+}
+
+.drawerQRContent {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.drawerQRImage {
+  width: 100px;
+  height: 138px;
+  border-radius: 10px;
+  border: 1px solid #99f6e4;
+  background: #041d1a;
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.15);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.drawerQRImage:hover {
+  transform: scale(1.04);
+  box-shadow: 0 6px 16px rgba(13, 148, 136, 0.25);
+}
+
+.drawerQRActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.drawerBtnQRDownload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: #0d9488;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.drawerBtnQRDownload:hover {
+  background: #0f766e;
+}
+
+.drawerBtnQRCopy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: #ffffff;
+  color: #0f766e;
+  border: 1px solid #99f6e4;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.drawerBtnQRCopy:hover {
+  background: #ccfbf1;
+}
+
+.drawerBtnQRCopy.copied {
+  background: #16a34a;
+  color: #ffffff;
+  border-color: #16a34a;
+}
+
+.drawerBtnQRDownload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #7e22ce;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.drawerBtnQRDownload:hover {
+  background: #6b21a8;
+}
+
+.drawerBtnQRCopy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #f3e8ff;
+  color: #7e22ce;
+  border: 1px solid #d8b4fe;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.drawerBtnQRCopy:hover {
+  background: #e9d5ff;
+}
+
+.drawerBtnQRCopy.copied {
+  background: #16a34a;
+  color: #ffffff;
+  border-color: #16a34a;
+}
+
+.drawerInfoSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.drawerDetailsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.drawerDetailCard {
+  background: #f8fafc;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.drawerDetailLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.drawerDetailVal {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.drawerBottomActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.drawerApprovalGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.drawerBtnApprove {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: #16a34a;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.drawerBtnApprove:hover {
+  background: #15803d;
+}
+
+.drawerBtnPending {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: #d97706;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.drawerBtnPending:hover {
+  background: #b45309;
+}
+
+.drawerBtnReject {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: #dc2626;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.drawerBtnReject:hover {
+  background: #b91c1c;
+}
+
+.drawerBtnWhatsApp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: #22c55e;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.drawerBtnWhatsApp:hover {
+  background: #16a34a;
+}
+
+.drawerBtnEdit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.drawerBtnEdit:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.drawerBtnDelete {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.drawerBtnDelete:hover {
+  background: #fee2e2;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MODAL DIALOG (Pure CSS Modules — Crisp, Centered & Fixed)
+   ═══════════════════════════════════════════════════════════ */
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modalOverlay {
+  position: fixed !important;
+  inset: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  background: rgba(4, 10, 20, 0.85) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  z-index: 999999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: clamp(14px, 3vh, 36px) clamp(14px, 3vw, 32px) !important;
+  direction: rtl;
+  overflow: hidden !important;
+  animation: modalFadeIn 0.22s ease-out both;
+}
+
+.modalCard {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-top: 3.5px solid #3ab9ac;
+  border-radius: 26px;
+  width: 100%;
+  max-width: 780px;
+  max-height: calc(100vh - 48px);
+  max-height: calc(100dvh - 48px);
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.65),
+    0 0 45px rgba(58, 185, 172, 0.12);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  animation: modalPopIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.modalBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 22px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  scrollbar-width: thin;
+}
+
+.modalBody::-webkit-scrollbar {
+  width: 6px;
+}
+.modalBody::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+.modalBody::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+.modalBody::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.whatsappModalCard {
+  max-width: 1060px;
+  width: 100%;
+  height: min(880px, calc(100dvh - 48px));
+}
+
+.whatsappModalGrid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f1f5f9;
+  padding: 18px 26px;
+  background: #ffffff;
+  flex-shrink: 0;
+}
+
+.modalHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modalIconBox {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #f0fdfa;
+  color: #0d9488;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalTitle {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.modalSubtitle {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 2px 0 0 0;
+  font-weight: 600;
+}
+
+.closeModalBtn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.closeModalBtn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* Modal Certificate Section */
+.modalCertSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modalCertHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalCertTitle {
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: #0f766e;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.modalToolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f1f5f9;
+  padding: 4px 6px;
+  border-radius: 8px;
+}
+
+.modalToolBtn {
+  background: transparent;
+  border: none;
+  color: #475569;
+  padding: 4px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalToolBtn:hover {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.modalCertViewer {
+  position: relative;
+  background: #090d16;
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  min-height: 280px;
+  max-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 12px;
+}
+
+.modalCertImg {
+  max-height: 350px;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.modalCertFullLink {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(4px);
+}
+
+.modalCertFullLink:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* Modal Info Grid */
+.modalInfoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.modalInfoCard {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.modalInfoLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modalInfoVal {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.modalFooterActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  border-top: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Form in Modal */
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formFieldFull {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.fieldInput {
+  padding: 10px 14px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #0f172a;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.fieldInput:focus {
+  background: #ffffff;
+  border-color: #3ab9ac;
+  box-shadow: 0 0 0 3px rgba(58, 185, 172, 0.15);
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 16px;
+}
+
+/* ── Pagination ── */
+.paginationBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-top: 1px solid #f1f5f9;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.paginationInfo {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.pageButtons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pageBtn {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #334155;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.pageBtn:hover:not(:disabled) {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.pageBtn.activePage {
+  background: #3ab9ac;
+  color: #ffffff;
+  border-color: #3ab9ac;
+}
+
+.pageBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.metaLabelMobile,
+.actionBtnLabelMobile {
+  display: none;
+}
+
+/* ── Responsive Breakpoints ── */
+@media (max-width: 1200px) {
+  .presetGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .presetGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .headerRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .headerActions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    justify-content: center;
+    padding: 10px 12px;
+    font-size: 0.82rem;
+  }
+
+  /* Filter Bar Mobile Reflow */
+  .filterBarCard {
+    padding: 12px;
+    border-radius: 14px;
+    gap: 10px;
+  }
+
+  .filterTopRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .searchWrap {
+    min-width: 100%;
+  }
+
+  .filterSelect {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .filterSubRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding-top: 8px;
+  }
+
+  .filterLabelWrap {
+    grid-column: span 2;
+  }
+
+  .filterResetBtn {
+    grid-column: span 2;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* Students Table Responsive Handling */
+  .tableCard {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+  }
+
+  .tableResponsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .studentsTable {
+    min-width: 750px;
+    width: 100%;
+  }
+
+  /* Drawer Mobile View */
+  .drawerCell {
+    padding: 0 !important;
+  }
+
+  .expandedDrawer {
+    padding: 16px;
+  }
+
+
+  .drawerDetailsGrid,
+  .modalInfoGrid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .drawerBottomActions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .drawerApprovalGroup {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .drawerBtnApprove,
+  .drawerBtnPending,
+  .drawerBtnReject,
+  .drawerBtnWhatsApp {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.78rem;
+    padding: 8px 6px;
+  }
+
+  /* Pagination Mobile */
+  .paginationBar {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  /* Modals Mobile Overrides */
+  .modalOverlay {
+    padding: 10px !important;
+    align-items: flex-start !important;
+    overflow-y: auto !important;
+  }
+
+  .modalCard,
+  .whatsappModalCard {
+    padding: 18px 14px !important;
+    max-height: 94vh !important;
+    border-radius: 16px !important;
+    gap: 14px !important;
+    margin: auto 0;
+  }
+
+  .whatsappModalGrid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .modalHeader {
+    padding-bottom: 12px !important;
+  }
+
+  .modalTitle {
+    font-size: 1.05rem !important;
+  }
+
+  .modalSubtitle {
+    font-size: 0.74rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .presetGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .filterSubRow {
+    grid-template-columns: 1fr;
+  }
+
+  .rowActionsClean {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .drawerApprovalGroup {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   EXPAND TOGGLE + STUDENT DRAWER
+   ═══════════════════════════════════════════════════════ */
+
+.colExpand {
+  width: 36px;
+  padding: 0 4px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.expandToggleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.expandToggleBtn:hover {
+  background: #f1f5f9;
+  border-color: #df9c4c;
+  color: #df9c4c;
+}
+
+.rowExpanded {
+  background: rgba(223, 156, 76, 0.04) !important;
+  border-bottom: none !important;
+}
+
+.drawerCell {
+  padding: 0 !important;
+  border-top: 1px dashed rgba(223, 156, 76, 0.3);
+  background: #fafbfd;
+}
+
+/* ── Drawer layout ───────────────────────────────────── */
+.expandedDrawer {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  padding: 20px 24px;
+  animation: drawerSlideIn 0.22s ease-out;
+}
+
+@keyframes drawerSlideIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.drawerCertSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.drawerQRCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.drawerQRTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 10px;
+  gap: 6px;
+}
+
+.qrBadgeId {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #94a3b8;
+  font-family: monospace;
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.drawerQRContent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.drawerQRImage {
+  width: 90px;
+  height: 90px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  object-fit: contain;
+}
+
+.drawerQRActions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.drawerBtnQRDownload,
+.drawerBtnQRCopy {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: 9px;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition: all 0.18s;
+}
+
+.drawerBtnQRDownload {
+  background: #f0fdf4;
+  color: #15803d;
+  border-color: #bbf7d0;
+}
+
+.drawerBtnQRDownload:hover {
+  background: #dcfce7;
+}
+
+.drawerBtnQRCopy {
+  background: #f0f9ff;
+  color: #0369a1;
+  border-color: #bae6fd;
+}
+
+.drawerBtnQRCopy:hover {
+  background: #e0f2fe;
+}
+
+.drawerBtnQRCopy.copied {
+  background: #dcfce7;
+  color: #15803d;
+  border-color: #bbf7d0;
+}
+
+/* ── Drawer info section ─────────────────────────────── */
+.drawerInfoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.drawerDetailsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.drawerDetailCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.drawerDetailLabel {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.drawerDetailVal {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* ── Drawer bottom actions ───────────────────────────── */
+.drawerBottomActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.drawerApprovalGroup {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.drawerBtnApprove,
+.drawerBtnPending,
+.drawerBtnReject,
+.drawerBtnWhatsApp,
+.drawerBtnEdit,
+.drawerBtnDelete {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: all 0.18s;
+}
+
+.drawerBtnApprove {
+  background: #dcfce7;
+  color: #15803d;
+}
+.drawerBtnApprove:hover { background: #bbf7d0; }
+
+.drawerBtnPending {
+  background: #fef3c7;
+  color: #b45309;
+}
+.drawerBtnPending:hover { background: #fde68a; }
+
+.drawerBtnReject {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.drawerBtnReject:hover { background: #fecaca; }
+
+.drawerBtnWhatsApp {
+  background: #dcfce7;
+  color: #15803d;
+}
+.drawerBtnWhatsApp:hover { background: #bbf7d0; }
+
+.drawerBtnEdit {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #dbeafe;
+}
+.drawerBtnEdit:hover { background: #dbeafe; }
+
+.drawerBtnDelete {
+  background: #fff1f2;
+  color: #be123c;
+  border: 1px solid #fecdd3;
+}
+.drawerBtnDelete:hover { background: #fecdd3; }
+
+/* ═══════════════════════════════════════════════════════
+   REDESIGNED DRAWER — Single-panel, no QR
+   ═══════════════════════════════════════════════════════ */
+
+/* Override old 2-column grid to single column */
+.expandedDrawer {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px 20px;
+  animation: drawerSlideIn 0.2s ease-out;
+}
+
+/* Status strip at top of drawer */
+.drawerStatusStrip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.drawerFirstTimeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: rgba(124, 58, 237, 0.12);
+  color: #7c3aed;
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-right: auto;
+}
+
+.drawerGoogleBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: rgba(14, 165, 233, 0.1);
+  color: #0284c7;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.drawerIdChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: rgba(148, 163, 184, 0.15);
+  color: #64748b;
+  font-size: 0.7rem;
+  font-family: monospace;
+  font-weight: 600;
+}
+
+/* Actions row */
+.drawerActionsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.drawerSecondaryActions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Compact action buttons — override old sizes */
+.drawerBtnApprove,
+.drawerBtnPending,
+.drawerBtnReject,
+.drawerBtnWhatsApp {
+  padding: 8px 14px;
+  font-size: 0.82rem;
+}
+
+.drawerBtnApprove:disabled,
+.drawerBtnPending:disabled,
+.drawerBtnReject:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+/* Flash pulse when button was just pressed */
+@keyframes actedPulse {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+.actedFlash {
+  animation: actedPulse 0.35s ease;
+}
+
+/* ═══════════════════════════════════════════════════
+   TABLE ROW ACTIONS TOOLBAR
+   ═══════════════════════════════════════════════════ */
+
+.rowActionsToolbar {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #f8fafc;
+  padding: 4px 6px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.rowBtnApprove,
+.rowBtnReject,
+.rowBtnWhatsApp,
+.rowBtnEdit,
+.rowBtnDelete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  background: transparent;
+}
+
+.rowBtnApprove {
+  color: #16a34a;
+  background: rgba(22, 163, 74, 0.08);
+  border-color: rgba(22, 163, 74, 0.2);
+}
+
+.rowBtnApprove:hover {
+  background: #16a34a;
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.rowBtnReject {
+  color: #dc2626;
+  background: rgba(220, 38, 38, 0.08);
+  border-color: rgba(220, 38, 38, 0.2);
+}
+
+.rowBtnReject:hover {
+  background: #dc2626;
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.rowBtnWhatsApp {
+  color: #059669;
+  background: rgba(5, 150, 105, 0.08);
+  border-color: rgba(5, 150, 105, 0.2);
+}
+
+.rowBtnWhatsApp:hover {
+  background: #059669;
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.rowBtnEdit {
+  color: #0284c7;
+  background: rgba(2, 132, 199, 0.08);
+  border-color: rgba(2, 132, 199, 0.2);
+}
+
+.rowBtnEdit:hover {
+  background: #0284c7;
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.rowBtnDelete {
+  color: #e11d48;
+  background: rgba(225, 29, 72, 0.08);
+  border-color: rgba(225, 29, 72, 0.2);
+}
+
+.rowBtnDelete:hover {
+  background: #e11d48;
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+/* ═══════════════════════════════════════════════════
+   DESKTOP TABLE vs MOBILE CARDS VIEW SWITCHER
+   ═══════════════════════════════════════════════════ */
+
+.desktopTableView {
+  display: block;
+}
+
+.mobileCardsView {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktopTableView {
+    display: none;
+  }
+
+  .mobileCardsView {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 4px 0;
+  }
+}
+
+/* ── Mobile Student Card ── */
+.mobileStudentCard {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 14px;
+  gap: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+}
+
+.mobileCardSelected {
+  border-color: #df9c4c;
+  background: #fffdfa;
+}
+
+.mobileCardExpanded {
+  border-color: #df9c4c;
+  box-shadow: 0 4px 16px rgba(223, 156, 76, 0.1);
+}
+
+/* Top Identity row */
+.mobileCardTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.mobileCardIdentity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
+.mobileNameMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.mobileExpandBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #64748b;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.mobileExpandBtn:hover {
+  background: #f1f5f9;
+  border-color: #df9c4c;
+  color: #df9c4c;
+}
+
+/* Middle badges & phone row */
+.mobileCardMiddleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 6px 0;
+  border-top: 1px dashed #f1f5f9;
+  border-bottom: 1px dashed #f1f5f9;
+}
+
+.mobileBadgesList {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* Date Row */
+.mobileCardDateRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.74rem;
+  color: #64748b;
+}
+
+/* Actions Row */
+.mobileCardActionsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.mobileActionButtonsLeft {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mobileActionButtonsRight {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Mobile Drawer Container */
+.mobileDrawerContainer {
+  margin-top: 6px;
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.mobileLoadingBox,
+.mobileEmptyBox {
+  text-align: center;
+  padding: 36px 16px;
+  color: #94a3b8;
+  font-weight: 700;
+  font-size: 0.88rem;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px dashed #e2e8f0;
+}
+
+

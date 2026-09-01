@@ -2,39 +2,57 @@
   position: fixed;
   inset: 0;
   z-index: 9000;
-  background: var(--color-midnight);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   direction: rtl;
+  background: url("heroBG.png") center center / cover no-repeat;
+}
+
+/* Dark tint so the watch + text stay legible */
+.overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 10, 28, 0.62);
+  z-index: 0;
 }
 
 /* Deep radial glow behind the watch */
 .bgGlow {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background:
-    radial-gradient(ellipse 55% 55% at 50% 45%,
-      rgba(11, 35, 70, 0.85) 0%,
-      rgba(3, 14, 38, 0.6) 55%,
-      transparent 100%),
-    radial-gradient(ellipse 35% 30% at 50% 45%,
-      rgba(223, 156, 76, 0.08) 0%,
-      transparent 70%);
+    radial-gradient(
+      ellipse 55% 55% at 50% 45%,
+      rgba(11, 35, 70, 0.7) 0%,
+      rgba(3, 14, 38, 0.4) 55%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 35% 30% at 50% 45%,
+      rgba(223, 156, 76, 0.1) 0%,
+      transparent 70%
+    );
   pointer-events: none;
 }
 
-/* Subtle grid/star particles in background */
+/* Subtle dot grid overlay */
 .bgParticles {
   position: absolute;
   inset: 0;
-  background-image:
-    radial-gradient(circle, rgba(223, 156, 76, 0.12) 1px, transparent 1px);
+  z-index: 1;
+  background-image: radial-gradient(
+    circle,
+    rgba(223, 156, 76, 0.1) 1px,
+    transparent 1px
+  );
   background-size: 48px 48px;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 /* ── Logo positioned just above the 3D watch model ── */
@@ -138,24 +156,48 @@
 
 /* Float animation for levitation */
 @keyframes introFloat {
-  0%   { transform: translateY(0px) rotate(0deg); }
-  50%  { transform: translateY(-12px) rotate(2deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
 }
 @keyframes introFloat2 {
-  0%   { transform: translateY(0px) rotate(0deg); }
-  50%  { transform: translateY(-16px) rotate(-3deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(-3deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
 }
 @keyframes introFloat3 {
-  0%   { transform: translateY(0px) rotate(0deg); }
-  50%  { transform: translateY(-10px) rotate(1.5deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1.5deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
 }
 
-.floatAnim1 { animation: introFloat 4.5s ease-in-out infinite; }
-.floatAnim2 { animation: introFloat2 3.8s ease-in-out infinite; }
-.floatAnim3 { animation: introFloat3 5.2s ease-in-out infinite; }
+.floatAnim1 {
+  animation: introFloat 4.5s ease-in-out infinite;
+}
+.floatAnim2 {
+  animation: introFloat2 3.8s ease-in-out infinite;
+}
+.floatAnim3 {
+  animation: introFloat3 5.2s ease-in-out infinite;
+}
 
 /* ── Dedicated Text Block (Zero Overlap Zone) ─────── */
 .textBlock {
@@ -182,7 +224,9 @@
   line-height: 1.8;
   letter-spacing: 0.02em;
   margin-bottom: 4px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9), 0 4px 20px rgba(4, 6, 17, 0.95);
+  text-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.9),
+    0 4px 20px rgba(4, 6, 17, 0.95);
   will-change: opacity, transform;
 }
 
@@ -191,7 +235,9 @@
   font-size: clamp(1.05rem, 2.5vw, 1.38rem);
   font-weight: 700;
   margin-top: 6px;
-  text-shadow: 0 0 16px rgba(223, 156, 76, 0.5), 0 2px 12px rgba(0, 0, 0, 0.95);
+  text-shadow:
+    0 0 16px rgba(223, 156, 76, 0.5),
+    0 2px 12px rgba(0, 0, 0, 0.95);
 }
 
 /* ── Skip button ─────────────────────────────────── */
@@ -239,10 +285,30 @@
     margin-top: -35px;
   }
 
-  .sandWatchFloat { width: 68px; height: 68px; top: 12%; left: 3%; }
-  .keyFloat       { width: 58px; height: 58px; top: 11%; right: 4%; }
-  .openBookFloat  { width: 75px; height: 60px; top: 48%; right: 2%; }
-  .closedBookFloat{ width: 52px; height: 52px; top: 46%; left: 2%; }
+  .sandWatchFloat {
+    width: 68px;
+    height: 68px;
+    top: 12%;
+    left: 3%;
+  }
+  .keyFloat {
+    width: 58px;
+    height: 58px;
+    top: 11%;
+    right: 4%;
+  }
+  .openBookFloat {
+    width: 75px;
+    height: 60px;
+    top: 48%;
+    right: 2%;
+  }
+  .closedBookFloat {
+    width: 52px;
+    height: 52px;
+    top: 46%;
+    left: 2%;
+  }
 
   .textBlock {
     bottom: clamp(58px, 8vh, 80px);

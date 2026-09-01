@@ -12,12 +12,7 @@ const TEXT_LINES = [
 ];
 
 // Floating objects config matching HeroSection
-const FLOAT_OBJECTS = [
-  { key: 'sandWatch', src: '/sandWatch.png', alt: 'ساعة رملية', cls: styles.sandWatchFloat, anim: styles.floatAnim1, enterDelay: 0.2 },
-  { key: 'key', src: '/key.png', alt: 'مفتاح ذهبي', cls: styles.keyFloat, anim: styles.floatAnim2, enterDelay: 0.35 },
-  { key: 'openBook', src: '/book2.png', alt: 'كتاب مفتوح', cls: styles.openBookFloat, anim: styles.floatAnim3, enterDelay: 0.5 },
-  { key: 'closedBook', src: '/book.png', alt: 'كتاب مغلق', cls: styles.closedBookFloat, anim: styles.floatAnim1, enterDelay: 0.65 },
-];
+
 
 export default function WatchIntro({ onDone }) {
   const overlayRef = useRef(null);
@@ -73,24 +68,6 @@ export default function WatchIntro({ onDone }) {
     }
 
     // 3. Fly floating objects toward their corresponding Hero visual sectors
-    const heroRightX = window.innerWidth * 0.35;
-    const heroCenterY = window.innerHeight * 0.2;
-
-    Object.values(floatRefs.current).forEach((el, i) => {
-      if (!el) return;
-      tl.to(
-        el,
-        {
-          x: heroRightX,
-          y: heroCenterY,
-          scale: 0.8,
-          opacity: 0.2,
-          duration: 1.0,
-          ease: 'power3.inOut',
-        },
-        `-=0.95`
-      );
-    });
 
     // 4. Fade out overlay backdrop smoothly to unveil Hero Section
     tl.to(
@@ -122,22 +99,22 @@ export default function WatchIntro({ onDone }) {
       );
 
       // 2. Floating objects smooth entrance
-      FLOAT_OBJECTS.forEach(({ key, enterDelay }) => {
-        const el = floatRefs.current[key];
-        if (!el) return;
-        gsap.fromTo(
-          el,
-          { opacity: 0, scale: 0.6, y: 25 },
-          {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 1.1,
-            delay: enterDelay,
-            ease: 'power3.out',
-          }
-        );
-      });
+      // FLOAT_OBJECTS.forEach(({ key, enterDelay }) => {
+      //   const el = floatRefs.current[key];
+      //   if (!el) return;
+      //   gsap.fromTo(
+      //     el,
+      //     { opacity: 0, scale: 0.6, y: 25 },
+      //     {
+      //       opacity: 1,
+      //       scale: 1,
+      //       y: 0,
+      //       duration: 1.1,
+      //       delay: enterDelay,
+      //       ease: 'power3.out',
+      //     }
+      //   );
+      // });
 
       // 3. Staggered narrative lines
       textRefs.current.forEach((el, i) => {
@@ -185,7 +162,7 @@ export default function WatchIntro({ onDone }) {
       </div>
 
       {/* Floating objects layer */}
-      <div className={styles.floatingLayer}>
+      {/* <div className={styles.floatingLayer}>
         {FLOAT_OBJECTS.map(({ key, src, alt, cls, anim }) => (
           <div
             key={key}
@@ -197,7 +174,7 @@ export default function WatchIntro({ onDone }) {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
 
       {/* 3D Pocket Watch Canvas Container */}
       <div ref={canvasWrapRef} className={styles.canvasWrap}>
