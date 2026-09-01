@@ -1,16 +1,35 @@
 .navbar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 24px 50px;
+  direction: rtl;
+  z-index: 1000;
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(4, 6, 17, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(223, 156, 76, 0.22);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.navContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 14px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  direction: rtl;
-  z-index: 50;
-  opacity: 0;
-  will-change: transform, opacity;
 }
 
 .brandBadge {
@@ -20,10 +39,16 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
 }
 
 .brandBadge span {
   color: var(--color-gold-light);
+}
+
+.desktopNav {
+  display: flex;
+  align-items: center;
 }
 
 .navLinks {
@@ -31,7 +56,7 @@
   align-items: center;
   gap: 28px;
   list-style: none;
-  background: rgba(3, 14, 38, 0.5);
+  background: rgba(3, 14, 38, 0.6);
   padding: 8px 24px;
   border-radius: 40px;
   border: 1px solid rgba(223, 156, 76, 0.25);
@@ -50,8 +75,14 @@
   color: var(--color-gold-light);
 }
 
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
 .vipBtn {
-  padding: 10px 22px;
+  padding: 9px 20px;
   background: rgba(223, 156, 76, 0.15);
   border: 1px solid var(--color-gold);
   border-radius: 40px;
@@ -59,6 +90,7 @@
   font-weight: 700;
   font-size: 0.9rem;
   text-decoration: none;
+  white-space: nowrap;
   transition: all 0.25s ease;
 }
 
@@ -68,11 +100,103 @@
   transform: translateY(-2px);
 }
 
-@media (max-width: 1024px) {
-  .navbar {
-    padding: 16px 24px;
+/* Mobile Hamburger */
+.hamburgerBtn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 32px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1010;
+}
+
+.bar {
+  width: 100%;
+  height: 2.5px;
+  background-color: var(--color-gold-light);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.barOpen1 {
+  transform: translateY(9.5px) rotate(45deg);
+}
+
+.barOpen2 {
+  opacity: 0;
+}
+
+.barOpen3 {
+  transform: translateY(-9.5px) rotate(-45deg);
+}
+
+/* Mobile Drawer Links */
+.mobileNav {
+  display: block;
+  background: rgba(4, 6, 17, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(223, 156, 76, 0.15);
+  padding: 16px 24px 24px;
+}
+
+.mobileNavLinks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mobileNavLinks a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 700;
+  display: block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mobileNavLinks a:hover {
+  background: rgba(223, 156, 76, 0.15);
+  color: var(--color-gold-light);
+}
+
+@media (max-width: 900px) {
+  .navContainer {
+    padding: 12px 20px;
   }
-  .navLinks {
+  .desktopNav {
     display: none;
   }
+  .hamburgerBtn {
+    display: flex;
+  }
+  .brandBadge {
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+  }
+  .vipBtn {
+    padding: 7px 14px;
+    font-size: 0.82rem;
+  }
 }
+
+@media (max-width: 480px) {
+  .navContainer {
+    padding: 10px 14px;
+  }
+  .brandBadge {
+    font-size: 0.88rem;
+    gap: 5px;
+  }
+  .vipBtn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}
+

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { Calendar, MapPin, Hourglass } from 'lucide-react';
 import styles from './HeroContent.module.css';
 
 export const HeroContent = () => {
@@ -88,18 +89,19 @@ export const HeroContent = () => {
       {/* Event Info Details */}
       <div ref={detailsRef} className={styles.eventDetailsRow}>
         <div className={styles.infoPill}>
-          <span className={styles.infoIcon}>📅</span>
+          <Calendar className={styles.infoLucideIcon} size={18} />
           <span>4 سبتمبر 2026</span>
         </div>
         <div className={styles.infoPill}>
-          <span className={styles.infoIcon}>📍</span>
+          <MapPin className={styles.infoLucideIcon} size={18} />
           <span>مدينة نصر - القاهرة</span>
         </div>
         <div className={styles.infoPill}>
-          <span className={styles.infoIcon}>⏳</span>
+          <Hourglass className={styles.infoLucideIcon} size={18} />
           <span>04:00 مساءً</span>
         </div>
       </div>
+
 
       {/* CTA Buttons */}
       <div ref={ctaRef} className={styles.actionButtonsGroup}>

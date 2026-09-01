@@ -1,0 +1,143 @@
+.backG {
+    background-image: url('../../assets/bg-image-loaderPM.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-position: center center; */
+}
+
+@media (min-width: 1024px) {
+    .backG {
+        background-position: center -200px;
+    }
+}
+.hero-title,
+.hero-subtitle {
+    direction: rtl;
+}
+
+/* العنوان الرئيسي */
+
+.hero-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.35em;
+
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    font-weight: 900;
+    letter-spacing: 0.02em;
+
+    color: #fbbf24;
+
+    text-shadow:
+        0 0 5px #f59e0b,
+        0 0 10px #f59e0b,
+        0 0 5px rgba(245, 158, 11, 0.9),
+        0 5px 5px rgba(0, 0, 0, 0.9);
+}
+
+/* كل كلمة */
+
+.hero-title span,
+.hero-subtitle span {
+    display: inline-block;
+
+    opacity: 0;
+
+    transform: translateY(-100px);
+
+    clip-path: inset(0 0 100% 0);
+
+    animation:
+        wordDrop 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+    animation-delay: calc(var(--i) * 0.45s);
+}
+
+
+/* العنوان الفرعي */
+
+.hero-subtitle {
+    margin-top: 0.7rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 0.35em;
+
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    font-weight: 500;
+
+    color: #fde68a;
+
+    text-shadow:
+        0 0 5px #f59e0b,
+        0 0 5px rgba(245, 158, 11, 0.8),
+        0 2px 5px rgba(0, 0, 0, 0.95);
+}
+
+
+/* حركة نزول + ظهور */
+
+@keyframes wordDrop {
+
+    /* بداية مخفية وفوق */
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+        clip-path: inset(0 0 100% 0);
+    }
+
+    /* ظهور أثناء النزول */
+    25% {
+        opacity: 0.5;
+    }
+
+    /* نزول سريع */
+    55% {
+        opacity: 1;
+        transform: translateY(0);
+        clip-path: inset(0 0 0 0);
+    }
+
+    /* أول Drag لتحت */
+    60% {
+        transform: translateY(15px);
+    }
+
+    65% {
+        transform: translateY(-12px);
+    }
+
+    70% {
+        transform: translateY(9px);
+    }
+
+    75% {
+        transform: translateY(-7px);
+    }
+
+    80% {
+        transform: translateY(5px);
+    }
+
+    85% {
+        transform: translateY(-2px);
+    }
+
+    /* لفوق */
+    85% {
+        transform: translateY(-2px);
+    }
+
+    /* تثبيت */
+    90%,
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        clip-path: inset(0 0 0 0);
+    }
+}

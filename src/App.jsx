@@ -3,7 +3,7 @@ import "./App.css";
 import "./index.css";
 
 import { HeroSection } from "./Components/HeroSection/HeroSection";
-import { StorySection } from ".//Components/";
+import { StorySection } from "./Components/StorySection/StorySection";
 import { CountdownSection } from "./Components/CountdownSection/CountdownSection";
 import Form from "./Components/Form/Form";
 import ManLoade from "./Components/ManLoader/ManLoade.jsx";

@@ -6,13 +6,19 @@ const LoaderLife = () => {
     <StyledWrapper>
       <div className="loading font-bold">
         <svg width="64px" height="48px">
-          <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="back" />
-          <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="front" />
+          <polyline
+            points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24"
+            id="back"
+          />
+          <polyline
+            points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24"
+            id="front"
+          />
         </svg>
       </div>
     </StyledWrapper>
   );
-}
+};
 
 const StyledWrapper = styled.div`
   .loading svg polyline {
@@ -43,6 +49,7 @@ const StyledWrapper = styled.div`
     to {
       stroke-dashoffset: 0;
     }
-  }`;
+  }
+`;
 
 export default LoaderLife;
