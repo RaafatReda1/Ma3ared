@@ -3,7 +3,6 @@ import { useFrame } from '@react-three/fiber'
 import { useEffect, useRef, useMemo } from 'react'
 import * as THREE from 'three'
 import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils.js'
-import audioTic from '../../../public/freesound_community-tactactac-103657.mp3'
 
 export function PocketWatch({
   handColor = '#ffd24d',
@@ -27,12 +26,6 @@ export function PocketWatch({
   const hourStartAngleRef = useRef(0)
 
   const animationStartRef = useRef(null)
-
-  // الصوت
-  const tickAudioRef = useRef(null)
-
-  // آخر حركة تم تشغيل صوتها
-  const lastStepRef = useRef(-1)
 
 
   /*
@@ -158,103 +151,16 @@ export function PocketWatch({
 
 
   /*
-    تجهيز الصوت
-  */
-
-  useEffect(() => {
-
-    const audio = new Audio(audioTic)
-
-    audio.preload = 'auto'
-    audio.volume = 0.5
-
-    tickAudioRef.current = audio
-
-    return () => {
-
-      audio.pause()
-      audio.currentTime = 0
-
-      tickAudioRef.current = null
-
-    }
-
-  }, [])
-
-
-  /*
-    Unlock للصوت على الموبايل
-  */
-
-  useEffect(() => {
-
-    const unlockAudio = () => {
-
-      const audio = tickAudioRef.current
-
-      if (!audio) return
-
-      audio
-        .play()
-        .then(() => {
-
-          audio.pause()
-          audio.currentTime = 0
-
-        })
-        .catch(() => {})
-
-    }
-
-
-    window.addEventListener(
-      'touchstart',
-      unlockAudio,
-      { once: true }
-    )
-
-    window.addEventListener(
-      'click',
-      unlockAudio,
-      { once: true }
-    )
-
-
-    return () => {
-
-      window.removeEventListener(
-        'touchstart',
-        unlockAudio
-      )
-
-      window.removeEventListener(
-        'click',
-        unlockAudio
-      )
-
-    }
-
-  }, [])
-
-
-  /*
     بداية الـ Loop
   */
 
   useEffect(() => {
-
     if (!animateHands) {
-
       animationStartRef.current = null
-      lastStepRef.current = -1
-
       return
     }
 
     animationStartRef.current = performance.now()
-
-    lastStepRef.current = -1
-
   }, [animateHands])
 
 
@@ -368,40 +274,6 @@ export function PocketWatch({
         (reverseTime % stepDuration) /
         stepDuration
 
-    }
-
-
-    /*
-      الصوت
-
-      Forward:
-      كل انتقال إلى Step جديد = تكة
-
-      Reverse:
-      كل انتقال إلى Step جديد = تكة
-    */
-
-    const stepKey = reverse
-      ? totalSteps + currentStep
-      : currentStep
-
-
-    if (
-      stepKey !== lastStepRef.current &&
-      currentStep > 0
-    ) {
-
-      const audio = tickAudioRef.current
-
-      if (audio) {
-
-        audio.currentTime = 0
-
-        audio.play().catch(() => {})
-
-      }
-
-      lastStepRef.current = stepKey
     }
 
 
