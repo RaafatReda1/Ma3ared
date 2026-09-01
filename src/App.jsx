@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import "./index.css";
+import { Analytics } from "@vercel/analytics/react";
 
 import { HeroSection } from "./Components/HeroSection/HeroSection";
 import { StorySection } from "./Components/StorySection/StorySection";
@@ -35,6 +36,7 @@ export default function App() {
         <Form />
         <Footer />
       </main>
+      <Analytics />
     </>
   );
 }
