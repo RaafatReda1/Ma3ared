@@ -6,6 +6,7 @@ import { HeroSection } from "./Components/HeroSection/HeroSection";
 import { StorySection } from "./Components/StorySection/StorySection";
 import { CountdownSection } from "./Components/CountdownSection/CountdownSection";
 import Form from "./Components/Form/Form";
+import Footer from "./Components/Footer/Footer";
 import WatchIntro from "./Components/WatchIntro/WatchIntro";
 
 export default function App() {
@@ -32,6 +33,7 @@ export default function App() {
         <StorySection />
         <CountdownSection />
         <Form />
+        <Footer />
       </main>
     </>
   );

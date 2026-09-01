@@ -98,7 +98,7 @@ export const HeroContent = () => {
         </div>
         <div className={styles.infoPill}>
           <Hourglass className={styles.infoLucideIcon} size={18} />
-          <span>04:00 مساءً</span>
+          <span>01:00 ظهرًا</span>
         </div>
       </div>
 
