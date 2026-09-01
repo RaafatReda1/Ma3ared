@@ -66,32 +66,35 @@ export default function App() {
   // If logged-in user is an Admin, render the Admin Control Panel
   if (isAdmin) {
     return (
-      <Suspense
-        fallback={
-          <div
-            style={{
-              minHeight: "100vh",
-              backgroundColor: "var(--color-midnight)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+      <>
+        <Suspense
+          fallback={
             <div
               style={{
-                width: "40px",
-                height: "40px",
-                borderRadius: "50%",
-                border: "3px solid rgba(223, 156, 76, 0.2)",
-                borderTopColor: "var(--color-gold)",
-                animation: "spin 0.8s linear infinite",
+                minHeight: "100vh",
+                backgroundColor: "var(--color-midnight)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
-            />
-          </div>
-        }
-      >
-        <Admin />
-      </Suspense>
+            >
+              <div
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "50%",
+                  border: "3px solid rgba(223, 156, 76, 0.2)",
+                  borderTopColor: "var(--color-gold)",
+                  animation: "spin 0.8s linear infinite",
+                }}
+              />
+            </div>
+          }
+        >
+          <Admin />
+        </Suspense>
+        <Analytics />
+      </>
     );
   }
 
