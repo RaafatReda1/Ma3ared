@@ -2,39 +2,51 @@
   position: fixed;
   inset: 0;
   z-index: 9000;
-  background: var(--color-midnight);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   direction: rtl;
+  background:
+    url('/introbg.jpg') center center / cover no-repeat;
+}
+
+/* Dark tint so the watch + text stay legible */
+.overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 10, 28, 0.62);
+  z-index: 0;
 }
 
 /* Deep radial glow behind the watch */
 .bgGlow {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background:
     radial-gradient(ellipse 55% 55% at 50% 45%,
-      rgba(11, 35, 70, 0.85) 0%,
-      rgba(3, 14, 38, 0.6) 55%,
+      rgba(11, 35, 70, 0.7) 0%,
+      rgba(3, 14, 38, 0.4) 55%,
       transparent 100%),
     radial-gradient(ellipse 35% 30% at 50% 45%,
-      rgba(223, 156, 76, 0.08) 0%,
+      rgba(223, 156, 76, 0.1) 0%,
       transparent 70%);
   pointer-events: none;
 }
 
-/* Subtle grid/star particles in background */
+/* Subtle dot grid overlay */
 .bgParticles {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background-image:
-    radial-gradient(circle, rgba(223, 156, 76, 0.12) 1px, transparent 1px);
+    radial-gradient(circle, rgba(223, 156, 76, 0.10) 1px, transparent 1px);
   background-size: 48px 48px;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 /* ── Logo positioned just above the 3D watch model ── */

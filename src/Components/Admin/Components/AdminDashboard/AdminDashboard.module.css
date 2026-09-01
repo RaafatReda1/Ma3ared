@@ -1,0 +1,613 @@
+/* ═══════════════════════════════════════════════════
+   ADMIN DASHBOARD — Clean Light Analytics Panel
+   ═══════════════════════════════════════════════════ */
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  direction: rtl;
+  color: #1e293b;
+  animation: pageEnter 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Top Header Row ── */
+.dashHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.dashTitleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dashTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dashSubtitle {
+  font-size: 0.88rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.refreshBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  color: #334155;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+.refreshBtn:hover:not(:disabled) {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #0f172a;
+  transform: translateY(-1px);
+}
+
+.refreshBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spinIcon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ── Error Banner ── */
+.errorCard {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  padding: 14px 20px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.retryBtn {
+  background: #ffffff;
+  border: 1px solid #fca5a5;
+  color: #dc2626;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+/* ── KPI Grid ── */
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.kpiCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 20px 22px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpiCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  border-color: #cbd5e1;
+}
+
+.kpiCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+}
+
+.kpi_gold::before { background: linear-gradient(90deg, #df9c4c, #f59e0b); }
+.kpi_emerald::before { background: linear-gradient(90deg, #10b981, #059669); }
+.kpi_amber::before { background: linear-gradient(90deg, #f59e0b, #d97706); }
+.kpi_rose::before { background: linear-gradient(90deg, #ef4444, #dc2626); }
+.kpi_cyan::before { background: linear-gradient(90deg, #06b6d4, #0284c7); }
+.kpi_purple::before { background: linear-gradient(90deg, #8b5cf6, #6d28d9); }
+
+.kpiHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kpiTitle {
+  font-size: 0.9rem;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.kpiIconBox {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f172a;
+}
+
+.kpi_gold .kpiIconBox { background: #fef3c7; color: #b45309; }
+.kpi_emerald .kpiIconBox { background: #dcfce7; color: #15803d; }
+.kpi_amber .kpiIconBox { background: #fef3c7; color: #b45309; }
+.kpi_rose .kpiIconBox { background: #fee2e2; color: #b91c1c; }
+.kpi_cyan .kpiIconBox { background: #e0f2fe; color: #0369a1; }
+.kpi_purple .kpiIconBox { background: #ede9fe; color: #6d28d9; }
+
+.kpiValueRow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.kpiValue {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.kpiBadge {
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.kpi_emerald .kpiBadge { background: #dcfce7; color: #15803d; }
+.kpi_amber .kpiBadge { background: #fef3c7; color: #b45309; }
+.kpi_cyan .kpiBadge { background: #e0f2fe; color: #0369a1; }
+
+.kpiSubtext {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.kpiSkeleton {
+  height: 38px;
+  width: 90px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* ── Grids ── */
+.twoColGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.twoColGridReverse {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 20px;
+}
+
+.fullWidthSection {
+  width: 100%;
+}
+
+/* ── Chart Cards ── */
+.chartCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chartHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chartTitleBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chartTitle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.chartSubtitle {
+  font-size: 0.84rem;
+  color: #64748b;
+}
+
+.chartContent {
+  width: 100%;
+  min-height: 220px;
+}
+
+.chartEmpty {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.chartSkeleton {
+  height: 220px;
+  width: 100%;
+  background: #f8fafc;
+  border-radius: 12px;
+  animation: pulse 1.5s infinite;
+}
+
+.chartTooltip {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  direction: rtl;
+}
+
+.tooltipLabel {
+  font-size: 0.85rem;
+  color: #0f172a;
+  margin: 0 0 4px;
+  font-weight: 800;
+}
+
+.tooltipValue {
+  font-size: 0.85rem;
+  color: #334155;
+  margin: 0;
+  display: flex;
+  gap: 6px;
+}
+
+.donutWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.donutLegend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+}
+
+.legendDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.legendName {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.legendValue {
+  color: #0f172a;
+  font-weight: 800;
+}
+
+/* ── Table Widgets ── */
+.tableWidgetCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.widgetHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.widgetTitleBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.widgetTitle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.widgetLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0284c7;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.widgetLink:hover {
+  transform: translateX(-4px);
+}
+
+.widgetBody {
+  width: 100%;
+}
+
+.widgetEmpty {
+  padding: 30px 0;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.widgetSkeleton {
+  height: 180px;
+  width: 100%;
+  background: #f8fafc;
+  border-radius: 12px;
+  animation: pulse 1.5s infinite;
+}
+
+/* Students List */
+.studentsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.studentItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.studentItem:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.studentInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.studentAvatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #e2e8f0;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.studentName {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 2px;
+}
+
+.studentEmail {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.studentStatusCol {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.badgeApproved {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.badgePending {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.badgeRejected {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.studentDate {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+/* Activity Logs List */
+.logsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.logItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.logItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.logDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0284c7;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.logContent {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.logDescription {
+  font-size: 0.88rem;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.logMeta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.logActor {
+  color: #0284c7;
+  font-weight: 700;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .twoColGrid,
+  .twoColGridReverse {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .studentItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .studentStatusCol {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

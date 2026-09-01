@@ -1,14 +1,23 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  server: {
-    watch: {
-      // Exclude the Admin folder to prevent EBUSY errors from locked files
-      ignored: ['**/Admin/**'],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
     },
   },
-})
+  server: {
+    watch: {
+      ignored: ['**/ResalaEvent/**'],
+    },
+  },
+})
+
