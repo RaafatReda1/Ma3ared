@@ -54,8 +54,8 @@
 
   --border-gold: rgba(223, 156, 76, 0.4);
 
-  --font-arabic: 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-display: 'Cinzel', 'Outfit', serif;
+  --font-arabic: 'Alexandria', 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
