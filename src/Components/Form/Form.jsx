@@ -417,7 +417,30 @@ export const Form = () => {
                 <button
                   type="button"
                   className={styles.editDataBtn}
-                  onClick={() => setIsEditing(true)}
+                  onClick={() => {
+                    if (!authUser) {
+                      setModalState({
+                        isOpen: true,
+                        type: 'info',
+                        title: 'يجب تسجيل الدخول أولاً',
+                        message:
+                          'لتعديل بياناتك المسجلة، يرجى تسجيل الدخول بحساب Google أولاً. هذا يضمن أن بياناتك آمنة ولا يمكن لأحد غيرك تعديلها.',
+                        actionButton: (
+                          <button
+                            className={styles.modalActionBtn}
+                            onClick={() => {
+                              setModalState((prev) => ({ ...prev, isOpen: false }));
+                              handleGoogleSignIn();
+                            }}
+                          >
+                            تسجيل الدخول بـ Google
+                          </button>
+                        ),
+                      });
+                      return;
+                    }
+                    setIsEditing(true);
+                  }}
                 >
                   <Edit3 size={18} />
                   <span>تعديل بياناتك المسجلة</span>
