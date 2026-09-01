@@ -23,30 +23,24 @@
   --color-text-muted: #D8D5CC;
 
   /* ===== Common Gradients ===== */
-  --gradient-night: linear-gradient(
-    135deg,
-    #040611 0%,
-    #030E26 50%,
-    #001027 100%
-  );
+  --gradient-night: linear-gradient(135deg,
+      #040611 0%,
+      #030E26 50%,
+      #001027 100%);
 
-  --gradient-gold: linear-gradient(
-    135deg,
-    #8D5122 0%,
-    #B9742F 30%,
-    #DF9C4C 55%,
-    #F3C87E 80%,
-    #B9742F 100%
-  );
+  --gradient-gold: linear-gradient(135deg,
+      #8D5122 0%,
+      #B9742F 30%,
+      #DF9C4C 55%,
+      #F3C87E 80%,
+      #B9742F 100%);
 
-  --gradient-gold-text: linear-gradient(
-    90deg,
-    #8D5122 0%,
-    #DF9C4C 40%,
-    #F3C87E 55%,
-    #DF9C4C 70%,
-    #8D5122 100%
-  );
+  --gradient-gold-text: linear-gradient(90deg,
+      #8D5122 0%,
+      #DF9C4C 40%,
+      #F3C87E 55%,
+      #DF9C4C 70%,
+      #8D5122 100%);
 
   /* ===== Effects ===== */
   --glow-gold: rgba(243, 200, 126, 0.5);
